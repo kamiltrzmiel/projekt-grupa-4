@@ -2,8 +2,9 @@
  * Główny plik dla stylów.
  * Wszystkie partials podłączamy tutaj.
  */
-
+@import './partials/mainHeader';
 // Style dla pliku z przykładem HTML fragmentu
 @import './globals';
 @import './vars';
 @import './partials/posters';
+
