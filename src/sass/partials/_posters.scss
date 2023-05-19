@@ -11,6 +11,13 @@
     font-size: 0.75rem;
     line-height: 1rem;
     font-weight: 500;
+    &:hover {
+      cursor: pointer;
+    }
+    &:focus {
+      outline: 3px solid $orange;
+      border-radius: 5px;
+    }
   }
   &__img {
     width: 100%;
