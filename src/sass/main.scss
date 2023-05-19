@@ -1,10 +1,17 @@
-/*
- * Główny plik dla stylów.
- * Wszystkie partials podłączamy tutaj.
- */
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 @import './partials/mainHeader';
-// Style dla pliku z przykładem HTML fragmentu
+
 @import './globals';
 @import './vars';
 @import './partials/posters';
 
+:root{
+--text-red-warn: #ff001b;
+--text-orange: #ff6b08;
+--text-black: #000000;
+--text-white: #ffffff;
+--text-footer: #545454;
+--bg-white: #ffffff;
+--bg-gray: #e5e5e5;
+}
