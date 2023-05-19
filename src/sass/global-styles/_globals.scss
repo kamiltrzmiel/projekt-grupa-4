@@ -1,4 +1,13 @@
 *,
+:root {
+  --text-red-warn: #ff001b;
+  --text-orange: #ff6b08;
+  --text-black: #000000;
+  --text-white: #ffffff;
+  --text-footer: #545454;
+  --bg-white: #ffffff;
+  --bg-gray: #e5e5e5;
+}
 ::after,
 ::before {
   margin: 0;
@@ -15,14 +24,14 @@ body {
 }
 
 .container {
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 1rem;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
 .section {
-    padding-top: 94px;
-    padding-bottom: 94px;
+  padding-top: 94px;
+  padding-bottom: 94px;
 }
 
 img {
