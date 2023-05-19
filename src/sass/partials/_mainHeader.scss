@@ -1,0 +1,38 @@
+.main-nav {
+  display: block;
+  text-transform: uppercase;
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 0.75rem;
+  line-height: 0.875rem;
+}
+
+.container {
+  &__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2.5rem;
+    &--menu {
+      @extend .container__nav;
+      gap: 2.5rem;
+      margin-top: 0.125rem;
+    }
+  }
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: 3.375rem;
+  }
+}
+
+.search-input {
+  width: calc(100% - 2.5rem);
+  align-self: center;
+  border: none;
+  border-bottom: 1px solid black;
+  outline: none;
+  font-family: 'Roboto';
+  font-size: 0.875rem;
+  line-height: 1rem;
+}
