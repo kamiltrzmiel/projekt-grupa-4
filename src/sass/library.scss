@@ -1,0 +1,16 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+/* ------------------------------ GLOBAL STYLES ----------------------------- */
+@import './global-styles/globals';
+
+/* -------------------------------- VARIABLES ------------------------------- */
+@import './variables/vars';
+
+/* ------------------------------ HEADER STYLES ----------------------------- */
+@import './header-styles/mainLibraryHeader';
+
+/* ----------------------------- CONTENT STYLES ----------------------------- */
+@import './content-styles/posters_library';
+
+/* ------------------------------ FOOTER STYLES ----------------------------- */
