@@ -20,7 +20,7 @@ const fetchTrendingMovies = async (page) => {
     const response = await api.fetchTrendingMovies(page);
     console.log(response.data.results);
   } catch (error) {
-    console.log(apiError);
+    console.log(error);
   }
 };
 
