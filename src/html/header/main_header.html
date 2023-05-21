@@ -1,13 +1,24 @@
-<header>
+<header class="container__background">
   <div class="container container__header">
     <nav>
       <div class="container__nav">
-        <img src="./assets/film.svg" alt="logo" />
+        <a href="./index.html" class="logo__box"
+          ><img src="./assets/film.svg" alt="logo" width="24px" /><span class="logo"
+            >Filmoteka</span
+          ></a
+        >
         <div class="container__nav--menu">
-          <span class="main-nav">home</span><span class="main-nav">my library</span>
+          <a href="./index.html"><span class="main-nav main-nav__is-active">home</span></a>
+          <a href="./library.html"><span class="main-nav">my library</span></a>
         </div>
       </div>
     </nav>
-    <input class="search-input" placeholder="..." />
+    <form id="search-form" class="search__box">
+      <input class="search__input" placeholder="Movie search" />
+      <button type="button" class="search__icon">
+        <img src="./assets/header/search-icon.svg" alt="search icon" width="14px" />
+      </button>
+      <p class="search__not-found">Search result not successful. Enter the correct movie name.</p>
+    </form>
   </div>
 </header>
