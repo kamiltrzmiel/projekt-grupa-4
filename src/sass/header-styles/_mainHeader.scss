@@ -12,7 +12,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 2.5rem;
     &--menu {
       @extend .container__nav;
       gap: 2.5rem;
@@ -23,6 +22,8 @@
     display: flex;
     flex-direction: column;
     gap: 3.375rem;
+    padding-top: 2.5rem;
+    padding-bottom: 5.75rem;
   }
 }
 
