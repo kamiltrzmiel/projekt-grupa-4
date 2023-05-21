@@ -15,7 +15,7 @@
   "author": "GRUPA 4",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/migace/kamiltrzmiel/projekt-grupa-4/issues"
+    "url": "https://github.com/kamiltrzmiel/projekt-grupa-4/issues"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.8.3",
