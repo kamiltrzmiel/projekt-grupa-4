@@ -147,3 +147,38 @@
     background-size: 100% 13.5rem;
   }
 }
+
+@media (min-width: $breakpointDesktop) {
+  .container {
+    &__header {
+      background-image: url('../assets/header/abstract-bg-desktop.png');
+      background-size: 100% 13.5rem;
+    }
+  }
+  .search {
+    &__input {
+      width: 24.625rem;
+    }
+    &__icon {
+      right: calc((100% - 24.625rem) / 2);
+    }
+  }
+}
+
+@media screen and (min-width: $breakpointDesktop) and (min-device-pixel-ratio: 2),
+  screen and (min-width: $breakpointDesktop) and (min-resolution: 192dpi),
+  screen and (min-width: $breakpointDesktop) and (min-resolution: 2dppx) {
+  .container__header {
+    background-image: url('../assets/header/abstract-bg-desktop@2x.png');
+    background-size: 100% 13.5rem;
+  }
+}
+
+@media screen and (min-width: $breakpointDesktop) and (min-device-pixel-ratio: 3),
+  screen and (min-width: $breakpointDesktop) and (min-resolution: 288dpi),
+  screen and (min-width: $breakpointDesktop) and (min-resolution: 3dppx) {
+  .container__header {
+    background-image: url('../assets/header/abstract-bg-desktop@3x.png');
+    background-size: 100% 13.5rem;
+  }
+}
