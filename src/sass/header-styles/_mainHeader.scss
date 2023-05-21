@@ -129,3 +129,21 @@
     }
   }
 }
+
+@media screen and (min-width: $breakpointTablet) and (min-device-pixel-ratio: 2),
+  screen and (min-width: $breakpointTablet) and (min-resolution: 192dpi),
+  screen and (min-width: $breakpointTablet) and (min-resolution: 2dppx) {
+  .container__header {
+    background-image: url('../assets/header/abstract-bg-tablet@2x.png');
+    background-size: 100% 13.5rem;
+  }
+}
+
+@media screen and (min-width: $breakpointTablet) and (min-device-pixel-ratio: 3),
+  screen and (min-width: $breakpointTablet) and (min-resolution: 288dpi),
+  screen and (min-width: $breakpointTablet) and (min-resolution: 3dppx) {
+  .container__header {
+    background-image: url('../assets/header/abstract-bg-tablet@3x.png');
+    background-size: 100% 13.5rem;
+  }
+}
