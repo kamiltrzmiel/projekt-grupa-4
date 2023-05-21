@@ -1,0 +1,36 @@
+<div id="modal-backdrop" class="backdrop hidden">
+  <div class="container">
+    <div id="modal-wrapper" class="modal">
+      <button id="modal-close-btn" class="modal__btn--close">x</button>
+      <img id="modal-image" src="./assets/placeholder.jpg" class="modal__image" alt="${title}" />
+      <div class="modal__description">
+        <h3 class="modal__title">${title}</h3>
+      </div>
+      <div id="modal-text" class="modal__text">
+        <div id="modal-info" class="modal__info">
+          <p class="modal__info--classification">Vote / Votes</p>
+          <p class="modal__info--detailed"><span class="modal__info--score">test</span> /
+            <span class="modal__info--score--second">123</span></p>
+        </div>
+        <div id="modal-info" class="modal__info">
+          <p class="modal__info--classification">Popularity</p>
+          <p class="modal__info--detailed">${}</p>
+        </div>
+        <div id="modal-info" class="modal__info">
+          <p class="modal__info--classification">Original title</p>
+          <p class="modal__info--detailed">${}</p>
+        </div>
+        <div id="modal-info" class="modal__info">
+          <p class="modal__info--classification">Genre</p>
+          <p class="modal__info--detailed">${}</p>
+        </div>
+        <article id="modal-article" class="modal__article">
+          <h4 class="modal__article--title">ABOUT</h4>
+          <p id="modal-article-description">${}</p>
+        </article>
+        <button id="modal-watched" class="modal__watched--btn">ADD TO WATCHED</button>
+        <button id="modal-queue" class="modal__queue--btn">ADD TO QUEUE</button>
+      </div>
+    </div>
+  </div>
+</div>
