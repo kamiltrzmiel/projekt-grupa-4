@@ -1,7 +1,6 @@
 .main-nav {
   display: block;
   text-transform: uppercase;
-  font-family: 'Roboto';
   font-weight: 500;
   font-size: 0.75rem;
   line-height: 0.875rem;
@@ -24,6 +23,10 @@
     gap: 3.375rem;
     padding-top: 2.5rem;
     padding-bottom: 5.75rem;
+    background-image: url('../assets/header/abstract-bg-mobile.png');
+    background-size: 320px 230px;
+    background-repeat: no-repeat;
+    color: #fff;
   }
 }
 
@@ -31,9 +34,14 @@
   width: calc(100% - 2.5rem);
   align-self: center;
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #fff;
   outline: none;
-  font-family: 'Roboto';
+  background-color: transparent;
+  color: #fff;
   font-size: 0.875rem;
   line-height: 1rem;
+  padding-bottom: 0.25rem;
+  &::placeholder {
+    color: #fff;
+  }
 }
