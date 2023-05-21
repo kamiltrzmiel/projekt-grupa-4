@@ -28,11 +28,15 @@
     background-repeat: no-repeat;
     color: #fff;
   }
+  &__search {
+    width: calc(100% - 2.5rem);
+    align-self: center;
+    position: relative;
+  }
 }
 
 .search-input {
-  width: calc(100% - 2.5rem);
-  align-self: center;
+  width: 100%;
   border: none;
   border-bottom: 1px solid #fff;
   outline: none;
@@ -44,4 +48,10 @@
   &::placeholder {
     color: #fff;
   }
+}
+
+.search-icon {
+  position: absolute;
+  right: 0;
+  bottom: 0.25rem;
 }
