@@ -71,6 +71,7 @@
     font-size: 0.875rem;
     line-height: 1rem;
     padding-bottom: 0.25rem;
+    margin-bottom: 1rem;
     &::placeholder {
       color: #fff;
     }
@@ -78,6 +79,12 @@
   &__icon {
     position: absolute;
     right: 0;
-    bottom: 0.25rem;
+    top: 0.25rem;
+  }
+  &__not-found {
+    font-size: 0.875rem;
+    line-height: 1rem;
+    color: #ff001b;
+    visibility: hidden;
   }
 }
