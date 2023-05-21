@@ -10,12 +10,13 @@
     }
   }
   &__header {
+    height: 14.375rem;
     display: flex;
     flex-direction: column;
     gap: 3.375rem;
     padding: 2.5rem 1.25rem 5.75rem;
     background-image: url('../assets/header/abstract-bg-mobile.png');
-    background-size: 100% 230px;
+    background-size: 100% 14.375rem;
     background-repeat: no-repeat;
     color: #fff;
   }
@@ -28,14 +29,14 @@
 @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
   .container__header {
     background-image: url('../assets/header/abstract-bg-mobile@2x.png');
-    background-size: 100% 230px;
+    background-size: 100% 14.375rem;
   }
 }
 
 @media (min-device-pixel-ratio: 3), (min-resolution: 288dpi), (min-resolution: 3dppx) {
   .container__header {
     background-image: url('../assets/header/abstract-bg-mobile@3x.png');
-    background-size: 100% 230px;
+    background-size: 100% 14.375rem;
   }
 }
 
@@ -62,7 +63,6 @@
 .search {
   &__box {
     width: 100%;
-    align-self: center;
     position: relative;
   }
   &__input {
@@ -90,5 +90,42 @@
     line-height: 1rem;
     color: #ff001b;
     visibility: hidden;
+  }
+}
+
+@media (min-width: $breakpointTablet) {
+  .container {
+    &__header {
+      height: 13.5rem;
+      padding-bottom: 5.063rem;
+      gap: 2.5rem;
+      background-image: url('../assets/header/abstract-bg-tablet.png');
+      background-size: 100% 13.5rem;
+    }
+  }
+  .logo {
+    display: inline-block;
+    font-weight: 500;
+    font-size: 1.875rem;
+    line-height: 2.188rem;
+    &__box {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+  }
+  .search {
+    &__box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    &__input {
+      width: 21rem;
+      margin-bottom: 1.25rem;
+    }
+    &__icon {
+      right: calc((100% - 21rem) / 2);
+    }
   }
 }
