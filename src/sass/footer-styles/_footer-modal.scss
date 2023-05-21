@@ -1,11 +1,25 @@
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &--column {
+    flex-direction: column;
+  }
+}
+
 .footer-modal {
-  width: 50%;
-  background-color: #f7f7f7;
+  max-width: 900px;
+  background-color: var(--bg-modal-inside);
   color: var(--text-footer);
-  border: 1px solid black;
-  position: absolute;
+  border: 1px solid #333333;
+  border-radius: 5px;
+  position: fixed;
   top: 20px;
-  left: 25%;
+  margin: 0 auto;
   padding: 20px;
 
   & > p {
@@ -14,12 +28,9 @@
 
   &__closeBtn {
     border-radius: 50%;
-    display: flex;
-    justify-content: center;
     position: absolute;
     top: 10px;
     right: 10px;
-    background-color: transparent;
 
     &:hover {
       fill: var(--text-red-warn);
@@ -29,28 +40,19 @@
 }
 
 .our-team {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
   &__tittle {
-    text-align: center;
     margin-bottom: 15px;
   }
 
   &__list {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     list-style: none;
   }
 
   &__item {
     max-width: 160px;
     height: 160px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background-color: var(--text-white);
     border-radius: 4px;
     padding: 15px;
@@ -62,22 +64,15 @@
 
   &__img {
     border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 
   &__card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    width: 160px;
   }
 
   &__name {
     color: var(--text-orange);
     margin: 10px auto;
-    text-align: center;
     font-size: 0.75rem;
   }
 
@@ -85,23 +80,18 @@
     margin: 0;
     padding-bottom: 6px;
     font-weight: 600;
-    text-align: center;
     font-size: 0.68rem;
   }
 }
 
-@media screen and (min-width: 768px) {
-  .our-team {
-    &__list {
-      display: flex;
-      flex-wrap: wrap;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-    &__item {
-      width: 160px;
-    }
+@media screen and (max-width: 768px) {
+  .footer-modal {
+    width: 200px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .footer-modal {
+    max-width: 500px;
   }
 }
