@@ -15,10 +15,13 @@
     flex-direction: column;
     gap: 3.375rem;
     padding: 2.5rem 1.25rem 5.75rem;
+    color: #fff;
+    max-width: $breakpointMin;
+  }
+  &__background {
     background-image: url('../assets/header/abstract-bg-mobile.png');
     background-size: 100% 14.375rem;
     background-repeat: no-repeat;
-    color: #fff;
   }
 }
 
@@ -27,14 +30,14 @@
 }
 
 @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
-  .container__header {
+  .container__background {
     background-image: url('../assets/header/abstract-bg-mobile@2x.png');
     background-size: 100% 14.375rem;
   }
 }
 
 @media (min-device-pixel-ratio: 3), (min-resolution: 288dpi), (min-resolution: 3dppx) {
-  .container__header {
+  .container__background {
     background-image: url('../assets/header/abstract-bg-mobile@3x.png');
     background-size: 100% 14.375rem;
   }
@@ -101,6 +104,9 @@
       height: 13.5rem;
       padding-bottom: 5.063rem;
       gap: 2.5rem;
+      max-width: $breakpointTablet;
+    }
+    &__background {
       background-image: url('../assets/header/abstract-bg-tablet.png');
       background-size: 100% 13.5rem;
     }
@@ -135,7 +141,7 @@
 @media screen and (min-width: $breakpointTablet) and (min-device-pixel-ratio: 2),
   screen and (min-width: $breakpointTablet) and (min-resolution: 192dpi),
   screen and (min-width: $breakpointTablet) and (min-resolution: 2dppx) {
-  .container__header {
+  .container__background {
     background-image: url('../assets/header/abstract-bg-tablet@2x.png');
     background-size: 100% 13.5rem;
   }
@@ -144,7 +150,7 @@
 @media screen and (min-width: $breakpointTablet) and (min-device-pixel-ratio: 3),
   screen and (min-width: $breakpointTablet) and (min-resolution: 288dpi),
   screen and (min-width: $breakpointTablet) and (min-resolution: 3dppx) {
-  .container__header {
+  .container__background {
     background-image: url('../assets/header/abstract-bg-tablet@3x.png');
     background-size: 100% 13.5rem;
   }
@@ -153,6 +159,9 @@
 @media (min-width: $breakpointDesktop) {
   .container {
     &__header {
+      max-width: $breakpointDesktop;
+    }
+    &__background {
       background-image: url('../assets/header/abstract-bg-desktop.png');
       background-size: 100% 13.5rem;
     }
@@ -170,7 +179,7 @@
 @media screen and (min-width: $breakpointDesktop) and (min-device-pixel-ratio: 2),
   screen and (min-width: $breakpointDesktop) and (min-resolution: 192dpi),
   screen and (min-width: $breakpointDesktop) and (min-resolution: 2dppx) {
-  .container__header {
+  .container__background {
     background-image: url('../assets/header/abstract-bg-desktop@2x.png');
     background-size: 100% 13.5rem;
   }
@@ -179,7 +188,7 @@
 @media screen and (min-width: $breakpointDesktop) and (min-device-pixel-ratio: 3),
   screen and (min-width: $breakpointDesktop) and (min-resolution: 288dpi),
   screen and (min-width: $breakpointDesktop) and (min-resolution: 3dppx) {
-  .container__header {
+  .container__background {
     background-image: url('../assets/header/abstract-bg-desktop@3x.png');
     background-size: 100% 13.5rem;
   }
