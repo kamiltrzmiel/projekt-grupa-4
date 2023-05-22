@@ -2,35 +2,35 @@
   "genres": [
     {
       "id": 28,
-      "name": "Akcja"
+      "name": "Action"
     },
     {
       "id": 12,
-      "name": "Przygodowy"
+      "name": "Adventure"
     },
     {
       "id": 16,
-      "name": "Animacja"
+      "name": "Animation"
     },
     {
       "id": 35,
-      "name": "Komedia"
+      "name": "Comedy"
     },
     {
       "id": 80,
-      "name": "Kryminał"
+      "name": "Crime"
     },
     {
       "id": 99,
-      "name": "Dokumentalny"
+      "name": "Documentary"
     },
     {
       "id": 18,
-      "name": "Dramat"
+      "name": "Drama"
     },
     {
       "id": 10751,
-      "name": "Familijny"
+      "name": "Family"
     },
     {
       "id": 14,
@@ -38,7 +38,7 @@
     },
     {
       "id": 36,
-      "name": "Historyczny"
+      "name": "History"
     },
     {
       "id": 27,
@@ -46,23 +46,23 @@
     },
     {
       "id": 10402,
-      "name": "Muzyczny"
+      "name": "Music"
     },
     {
       "id": 9648,
-      "name": "Tajemnica"
+      "name": "Mystery"
     },
     {
       "id": 10749,
-      "name": "Romans"
+      "name": "Romance"
     },
     {
       "id": 878,
-      "name": "Sci-Fi"
+      "name": "Science Fiction"
     },
     {
       "id": 10770,
-      "name": "film TV"
+      "name": "TV Movie"
     },
     {
       "id": 53,
@@ -70,7 +70,7 @@
     },
     {
       "id": 10752,
-      "name": "Wojenny"
+      "name": "War"
     },
     {
       "id": 37,
