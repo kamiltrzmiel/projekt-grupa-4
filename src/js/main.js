@@ -22,3 +22,16 @@ const closeModal = () => {
 hideDialogBtn.addEventListener('click', closeModal);
 dialog.addEventListener('close', closeModal);
 
+/* ------------------------------ USAGE EXAMPLE ----------------------------- */
+import api from './services/api';
+
+const fetchTrendingMovies = async (page) => {
+  try {
+    const response = await api.fetchTrendingMovies(page);
+    console.log(response.data.results);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+fetchTrendingMovies(2);
