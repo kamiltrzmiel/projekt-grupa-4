@@ -13,8 +13,12 @@ showDialogBtn.addEventListener('click', () => {
   body.style.overflow = 'hidden';
   dialog.showModal()
 });
-hideDialogBtn.addEventListener('click', () => {
+
+const closeModal = () => {
   body.style.overflow = 'auto';
-  dialog.close()
-});
+  dialog.close();
+};
+
+hideDialogBtn.addEventListener('click', closeModal);
+dialog.addEventListener('close', closeModal);
 
