@@ -60,15 +60,47 @@
     }
   }
 
+}
+
+.button {
   &--library {
-    &__buttons {
-      padding-top: 0.75rem;
-      display: flex;
-      gap: 1.25rem;
-      justify-content: center;
+    // padding-top: 0.75rem;
+    // display: flex;
+    // gap: 1.25rem;
+    // justify-content: center;
+
+    padding-top: 14px;
+    padding-bottom: 12px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 133%;
+    color: var(--bg-white);
+    background-color: transparent;
+    border: 1px solid var(--bg-white);
+    border-radius: 5px;
+    text-transform: uppercase;
+    width: 130px;
+    cursor: pointer;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:active {
+      background-color: var(--text-orange);
+
     }
   }
+
+  &__buttons:hover,
+  &__btn:focus {
+    transform: scale(1.1);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    background-color: var(--text-orange);
+  }
 }
+
 
 @media screen and (max-width: $breakpointMobile) {
 
@@ -91,8 +123,12 @@
   }
 }
 
-@media screen and (min-width: $breakpointTablet) {
+@media screen and (min-width: $breakpointTablet) and (max-width: 1199px) {
   .header {
+    background-image: url('../assets/header-library/tablet_header_library@1x.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
     &__main {
       margin-bottom: 2.5rem;
     }
@@ -104,4 +140,60 @@
     }
 
   }
+
+  @media (min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+    .header--library {
+      background-image: url('../assets/header-library/tablet_header_library@2x.jpg');
+      background-size: 100% 14.375rem;
+    }
+  }
+
+  @media (min-device-pixel-ratio: 3),
+  (min-resolution: 288dpi),
+  (min-resolution: 3dppx) {
+    .header--library {
+      background-image: url('../assets/header-library/tablet_header_library@3x.jpg');
+      background-size: 100% 14.375rem;
+    }
+  }
 }
+
+@media screen and (min-width: $breakpointDesktop) {
+  .header {
+    background-image: url('../assets/header-library/desctop_header_library@1x.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+    &__main {
+      margin-bottom: 2.5rem;
+    }
+
+    &__title {
+      &__name {
+        display: block;
+      }
+    }
+  }
+
+  @media (min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+    .header--library {
+      background-image: url('../assets/header-library/desctop_header_library@2x.jpg');
+      background-size: 100% 14.375rem;
+    }
+  }
+
+  @media (min-device-pixel-ratio: 3),
+  (min-resolution: 288dpi),
+  (min-resolution: 3dppx) {
+    .header--library {
+      background-image: url('../assets/header-library/desctop_header_library@3x.jpg');
+      background-size: 100% 14.375rem;
+    }
+  }
+}
+
+@media screen and (min-width: $breakpointTablet) {}
