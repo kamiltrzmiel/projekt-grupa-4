@@ -1,6 +1,7 @@
 import translateIdToGenre from './genre';
 
 export function render(data, renderElement, renderVotes) {
+  renderElement.innerHTML = '';
   const markup = data
     .map(
       ({
