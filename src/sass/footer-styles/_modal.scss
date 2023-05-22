@@ -1,3 +1,6 @@
+@import '../variables/vars';
+@import '../global-styles/globals';
+
 .backdrop {
   display: flex;
   align-items: center;
@@ -14,27 +17,65 @@
 .modal {
   position: relative;
   background-color: var(--text-white);
-  padding-inline: 1rem;
+  padding-inline: 1.25rem;
   padding-top: 3rem;
   padding-bottom: 2rem;
-  // width: 80vw;
   min-width: 280px;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
 
-  &__btn--close {
-    position: absolute;
-    background-color: var(--text-white);
-    top: 0.75rem;
-    right: 0.75rem;
-    width: 1.5rem;
-    height: 1.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+  &__btn {
+    &--close {
+      position: absolute;
+      background-color: var(--text-white);
+      top: 0.75rem;
+      right: 0.75rem;
+      width: 1.5rem;
+      height: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+    &--watched {
+      border-radius: 5px;
+      background: #ff6b01;
+      font-family: inherit;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 1.33;
+      text-align: center;
+      text-transform: uppercase;
+      color: var(--text-white);
+      padding-inline: 0.3rem;
+      height: 2.75rem;
+      width: 6.875rem;
+    }
+    &--queued {
+      border-radius: 5px;
+      background: var(--text-white);
+      border: 1px solid var(--text-black);
+      font-family: inherit;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 1.33;
+      text-align: center;
+      text-transform: uppercase;
+      padding-inline: 0.3rem;
+      height: 2.75rem;
+      width: 6.875rem;
+    }
   }
-
   &__image {
     border-radius: 5px;
+    max-width: 240px;
+    max-height: 373px;
+  }
+
+  &__text {
+    display: block;
   }
 
   &__title {
@@ -44,6 +85,12 @@
     line-height: 1.15;
     text-transform: uppercase;
     margin-block: 1.5rem;
+  }
+
+  &__buttons {
+    margin-bottom: 2.5rem;
+    display:flex;
+    justify-content: space-between;
   }
 
   &__info {
@@ -59,20 +106,22 @@
       font-size: 12px;
       line-height: 1.33;
       color: var(--modal-description-grey);
+      flex: 1 1 0;
     }
 
     &--detailed {
       font-family: inherit;
       font-weight: 500;
       font-size: 12px;
-      line-height: 1.16;
+      line-height: 1.33;
+      flex: 1 1 0;
     }
 
     &--score {
       font-family: inherit;
       font-weight: 500;
       font-size: 12px;
-      line-height: 1.16;
+      line-height: 1.33;
       border-radius: 5px;
       background-color: #ff6b01;
       color: var(--text-white);
@@ -82,13 +131,65 @@
       font-family: inherit;
       font-weight: 500;
       font-size: 12px;
-      line-height: 1.16;
-      //   display: flex;
-      //   align-items: center;
-      //   text-align: center;
+      line-height: 1.33;
       background-color: #f7f7f7;
       border-radius: 5px;
       padding-inline: 0.5rem;
     }
   }
+
+  &__article {
+    margin-top: 1.3rem;
+
+    &--title {
+      font-family: inherit;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 1.33;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    &--description {
+      font-family: inherit;
+      font-style: norml;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 1.67;
+      margin-bottom: 1.3rem;
+    }
+  }
+}
+
+
+@media (min-width: 768px) {
+  .modal {
+    padding: 2.5rem 4.5rem 2.5rem 2.25rem;
+    flex-direction: row;
+    max-width: 704px;
+
+    &__image {
+      max-width: 264px;
+      margin-right: 4.25rem;
+    }
+
+    &__title {
+      margin-top: 0;
+    }
+
+    &__text {
+      max-width: 264px;
+    }
+    &__btn {
+      &--watched {
+        padding-inline: 0.5rem;
+        width: 7.875rem;
+      }
+      &--queued {
+        padding-inline: 0.5rem;
+        width: 7.875rem;
+      }
+    }
+  }
+  
 }
