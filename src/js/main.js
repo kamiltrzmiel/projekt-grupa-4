@@ -3,15 +3,17 @@ import { API_URL, IMG_URL, API_KEY, LANGUAGE } from './variables/constants';
 
 /* --------------------------------- HEADER --------------------------------- */
 
+import pagination from './pagination';
+
 /* --------------------------------- FOOTER --------------------------------- */
 const dialog = document.getElementById('footer-dialog');
 const hideDialogBtn = document.getElementById('hide');
 const showDialogBtn = document.getElementById('show');
-const body = document.querySelector("body");
+const body = document.querySelector('body');
 
 showDialogBtn.addEventListener('click', () => {
   body.style.overflow = 'hidden';
-  dialog.showModal()
+  dialog.showModal();
 });
 
 const closeModal = () => {
@@ -27,7 +29,7 @@ import api from './services/api';
 import { render } from './services/render';
 const renderElement = document.getElementById('posters');
 
-const fetchTrendingMovies = async (page) => {
+const fetchTrendingMovies = async page => {
   try {
     const response = await api.fetchTrendingMovies(page);
     const data = response.data.results;
