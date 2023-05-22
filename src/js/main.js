@@ -24,14 +24,17 @@ dialog.addEventListener('close', closeModal);
 
 /* ------------------------------ USAGE EXAMPLE ----------------------------- */
 import api from './services/api';
+import { render } from './services/render';
+const renderElement = document.getElementById('posters');
 
 const fetchTrendingMovies = async (page) => {
   try {
     const response = await api.fetchTrendingMovies(page);
-    console.log(response.data.results);
+    const data = response.data.results;
+    render(data, renderElement, true);
   } catch (error) {
     console.log(error);
   }
 };
 
-fetchTrendingMovies(2);
+fetchTrendingMovies(1);
