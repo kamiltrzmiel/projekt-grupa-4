@@ -2,13 +2,23 @@
 @import '../global-styles/globals';
 
 .header {
+  margin: 0;
+  padding: 0;
   width: 100%;
+  min-width: $breakpointMin;
+  height: 230px;
+  background: rgba(0, 0, 0, 0.56);
+  -webkit-box-shadow: inset 0px 0px 70px 50px rgba(0, 0, 15, 56%);
+  -moz-box-shadow: inset 0px 0px 70px 50px rgba(0, 0, 15, 56%);
+  box-shadow: inset 0px 0px 70px 50px rgba(0, 0, 15, 56%);
+  color: var(--text-white);
+
   background-image: url('../assets/header-library/mobile_header_library@1x.jpg');
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  padding-top: 2.5rem;
-  padding-bottom: 2.75rem;
-  color: var(--text-white);
+  // padding-top: 2.5rem;
+  // padding-bottom: 2.75rem;
+
 
   &__main {
     margin-bottom: 3.375rem;
@@ -50,52 +60,35 @@
     }
   }
 
-  // &__form {
-  //   display: none;
-  //   position: relative;
-  //   max-width: $breakpointMobile;
-  //   margin: 0 auto;
+  &--library {
+    &__buttons {
+      padding-top: 0.75rem;
+      display: flex;
+      gap: 1.25rem;
+      justify-content: center;
+    }
+  }
+}
 
-  //   &__input {
-  //     width: 100%;
-  //     background-color: transparent;
-  //     border: none;
-  //     border-bottom: 1px solid var(--text-white);
-  //     padding: 0;
-  //     color: var(--text-white);
+@media screen and (max-width: $breakpointMobile) {
 
-  //     &::placeholder {
-  //       color: var(--text-white);
-  //     }
-  //   }
+  @media (min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+    .header--library {
+      background-image: url('../assets/header-library/mobile_header_library@2x.jpg');
+      background-size: 100% 14.375rem;
+    }
+  }
 
-  //   &__icon {
-  //     position: absolute;
-  //     right: 0;
-  //     top: 0.5rem;
-  //   }
-
-  //   &__error {
-  //     margin-top: 1rem;
-  //     color: var(--text-red-warn);
-  //     font-size: var(--fs-400);
-  //     line-height: 1rem;
-  //     font-weight: 400;
-  //   }
-  // }
-
-  // &--library {
-  //   background-image: url('../assets/header-library/tablet_header_library@1x.jpg');
-  //   background-size: cover;
-  //   padding-bottom: 3.75rem;
-
-  //   &__buttons {
-  //     padding-top: 0.75rem;
-  //     display: flex;
-  //     gap: 1.25rem;
-  //     justify-content: center;
-  //   }
-  // }
+  @media (min-device-pixel-ratio: 3),
+  (min-resolution: 288dpi),
+  (min-resolution: 3dppx) {
+    .header--library {
+      background-image: url('../assets/header-library/mobile_header_library@3x.jpg');
+      background-size: 100% 14.375rem;
+    }
+  }
 }
 
 @media screen and (min-width: $breakpointTablet) {
