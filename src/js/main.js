@@ -25,7 +25,7 @@ dialog.addEventListener('close', closeModal);
 /* ------------------------------ USAGE EXAMPLE ----------------------------- */
 import api from './services/api';
 import { render } from './services/render';
-const renderElement = document.getElementById('posters-list');
+const renderElement = document.getElementById('posters');
 
 const fetchTrendingMovies = async (page) => {
   try {
