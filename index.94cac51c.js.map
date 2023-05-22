@@ -1,1 +1,0 @@
-{"mappings":"oeAAAA,EAAA","sources":["src/index.js"],"sourcesContent":["import './js/main';\nimport './sass/main.scss';\n"],"names":["parcelRequire"],"version":3,"file":"index.94cac51c.js.map"}
