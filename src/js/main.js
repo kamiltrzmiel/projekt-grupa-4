@@ -31,7 +31,7 @@ const fetchTrendingMovies = async (page) => {
   try {
     const response = await api.fetchTrendingMovies(page);
     const data = response.data.results;
-    render(data, renderElement);
+    render(data, renderElement, true);
   } catch (error) {
     console.log(error);
   }

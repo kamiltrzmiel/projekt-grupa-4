@@ -1,6 +1,6 @@
 import translateIdToGenre from './genre';
 
-export function render(data, renderElement) {
+export function render(data, renderElement, renderVotes) {
   const markup = data
     .map(
       ({
@@ -25,7 +25,8 @@ export function render(data, renderElement) {
             <p class="posters__details">
               ${genre_ids.map(genre => ` ${translateIdToGenre(genre)}`)}
               |
-              ${new Date(release_date).getFullYear()} <span class="posters__ranking">${vote_average}</span>
+              ${new Date(release_date).getFullYear()}
+              ${renderVotes ? `<span class="posters__ranking">${vote_average}</span>` : ''}
             </p>
           </figcaption>
         </figure>
