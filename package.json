@@ -5,7 +5,7 @@
   "homepage": "https://github.com/kamiltrzmiel/projekt-grupa-4",
   "scripts": {
     "dev": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url projekt-grupa-4"
+    "build": "parcel build src/index.html --public-url /projekt-grupa-4/"
   },
   "repository": {
     "type": "git",
@@ -15,7 +15,7 @@
   "author": "GRUPA 4",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/migace/kamiltrzmiel/projekt-grupa-4/issues"
+    "url": "https://github.com/kamiltrzmiel/projekt-grupa-4/issues"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.8.3",
