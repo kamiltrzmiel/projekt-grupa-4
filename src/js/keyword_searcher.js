@@ -1,5 +1,6 @@
 import api, { fetchTrendingMovies } from './services/api'; // added function imports from API
 import { render } from './services/render';
+import { moviesLoading } from './services/loader';
 const searchForm = document.getElementById('search-form');
 const searchInput = document.querySelector('.search__input');
 const searchButton = document.querySelector('.search__icon');
@@ -23,7 +24,10 @@ searchButton.addEventListener('click', event => {
   event.preventDefault();
   const query = searchInput.value.trim();
   if (query) {
-    searchMovies(query);
+    moviesLoading();
+    setTimeout(() => {
+      searchMovies(query);
+    }, 400);
   }
 });
 // Do the search movies after pressing enter key
@@ -32,7 +36,10 @@ searchInput.addEventListener('keypress', event => {
     event.preventDefault();
     const query = searchInput.value.trim();
     if (query) {
-      searchMovies(query);
+      moviesLoading();
+      setTimeout(() => {
+        searchMovies(query);
+      }, 400);
     }
   }
 });

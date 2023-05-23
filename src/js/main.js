@@ -4,6 +4,7 @@ import { API_URL, IMG_URL, API_KEY, LANGUAGE } from './variables/constants';
 /* --------------------------------- HEADER --------------------------------- */
 
 import keyword_searcher from './keyword_searcher';
+import { moviesLoading } from './services/loader';
 
 /* --------------------------------- FOOTER --------------------------------- */
 const dialog = document.getElementById('footer-dialog');
@@ -39,4 +40,7 @@ const fetchTrendingMovies = async page => {
   }
 };
 
-fetchTrendingMovies(1);
+moviesLoading();
+setTimeout(() => {
+  fetchTrendingMovies(1);
+}, 250);
