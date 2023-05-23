@@ -12,6 +12,7 @@ const searchMovies = async query => {
     const response = await api.fetchMoviesWithQuery(query);
     const data = response.data.results;
     if (data.length === 0) throw new Error();
+    searchNotFound.style.visibility = 'hidden';
     render(data, renderElement, false);
     searchInput.value = '';
   } catch (error) {
