@@ -1,18 +1,14 @@
 import translateIdToGenre from './genre';
+import placeholder from '../../assets/placeholder.jpg';
 
 export function render(data, renderElement, renderVotes) {
   renderElement.innerHTML = '';
   const markup = data
-    .map(
-      ({
-        id,
-        title,
-        poster_path,
-        vote_average,
-        release_date,
-        genre_ids,
-      }) => {
-        return `
+    .map(({ id, title, poster_path, vote_average, release_date, genre_ids }) => {
+      poster_path
+        ? (poster_path = `https://image.tmdb.org/t/p/w500/${poster_path}`)
+        : (poster_path = placeholder);
+      return `
         <figure
           class="posters__box"
           tabindex="0"
@@ -20,7 +16,7 @@ export function render(data, renderElement, renderVotes) {
           aria-label="${title}"
           data-id="${id}"
         >
-          <img src="https://image.tmdb.org/t/p/w500/${poster_path}" alt="placeholder" class="posters__img" />
+          <img src="${poster_path}" alt="${title}" class="posters__img" />
           <figcaption>
             <h3 id="poster-title" class="posters__title">${title}</h3>
             <p class="posters__details">
@@ -32,8 +28,7 @@ export function render(data, renderElement, renderVotes) {
           </figcaption>
         </figure>
       `;
-      }
-    )
+    })
     .join('');
   renderElement.insertAdjacentHTML('beforeend', markup);
 }
