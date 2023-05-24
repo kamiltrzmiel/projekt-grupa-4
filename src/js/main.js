@@ -4,12 +4,17 @@ import { API_URL, IMG_URL, API_KEY, LANGUAGE } from './variables/constants';
 /* --------------------------------- HEADER --------------------------------- */
 
 import keyword_searcher from './keyword_searcher';
+import { moviesLoading } from './services/loader';
+import { reloadHeader, setRegisterAndSignUp } from './services/firebase';
 
 /* --------------------------------- FOOTER --------------------------------- */
 const dialog = document.getElementById('footer-dialog');
 const hideDialogBtn = document.getElementById('hide');
 const showDialogBtn = document.getElementById('show');
 const body = document.querySelector('body');
+
+reloadHeader();
+setRegisterAndSignUp();
 
 showDialogBtn.addEventListener('click', () => {
   body.style.overflow = 'hidden';
@@ -50,4 +55,7 @@ const fetchTrendingMovies = async page => {
   }
 };
 
-fetchTrendingMovies(1);
+moviesLoading();
+setTimeout(() => {
+  fetchTrendingMovies(1);
+}, 250);
