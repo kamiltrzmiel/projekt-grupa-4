@@ -38,6 +38,10 @@
   flex-direction: column;
   gap: 1rem;
 
+  & > p {
+    gap: 4px;
+  }
+
   &__button {
     padding-top: 14px;
     padding-bottom: 12px;
@@ -81,6 +85,14 @@
   &__link {
     color: var(--text-orange);
     cursor: pointer;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: underline;
+      font-weight: 500;
+    }
   }
   &__close-btn {
     @extend .footer-modal__closeBtn;
@@ -89,7 +101,8 @@
     height: 1rem;
     transition-duration: 250ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    &:hover {
+    &:hover,
+    &:focus {
       cursor: pointer;
       color: var(--text-white);
       background-color: var(--text-orange);
