@@ -2,25 +2,30 @@ import api from './api';
 import { render } from './render';
 import translateIdToGenre from './genre';
 const renderElement = document.getElementById('posters');
+const closeDetailModalBtn = document.getElementById('hide-modal');
 
 renderElement.addEventListener('click', e => {
-  const detaileDialogEl = document.getElementById('detaile-dialog');
-  const detaile = e.target;
-  console.log(detaile);
+  const detailDialogEl = document.getElementById('modal-backdrop');
+  const detail = e.target;
+  console.log(detail);
 
   const fetchTrendingMovies = async page => {
     try {
       const response = await api.fetchTrendingMovies(page);
       const data = response.data.results;
       console.log(data);
+      render(data, renderElement, true);
+
       data.map(item => {
         item.poster_path
           ? (item.poster_path = `https://image.tmdb.org/t/p/w500/${item.poster_path}`)
           : (item.poster_path = placeholder);
-        detaileDialogEl.innerHTML = `<div id="modal-backdrop">
+        detailDialogEl.innerHTML = `
       <div class="container">
         <div id="modal-wrapper" class="modal">
-          <button id="modal-close-btn" class="modal__btn--close">x</button>
+        <button id="hide-modal" class="footer-modal__closeBtn">
+        x
+      </button>
           <img id="modal-image" src="${item.poster_path}" class="modal__image" alt="${
           item.title
         }" />
@@ -62,14 +67,13 @@ renderElement.addEventListener('click', e => {
           </div>
         </div>
       </div>
-    </div>
+   
       `;
       });
-      render(data, renderElement, true);
     } catch (error) {
       console.log(error);
     }
   };
   fetchTrendingMovies();
-  detaileDialogEl.showModal();
+  detailDialogEl.showModal();
 });
