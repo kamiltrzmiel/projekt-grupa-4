@@ -115,7 +115,7 @@ export const saveMovieToDatabase = (movie, user) => {
 
 //Funkcja zapisuje użytkownika do bazy danych
 const saveUserToDatabase = (user, email) => {
-  const userRef = ref(database, 'users/' + user.uid);
+  const userRef = ref(database, 'users/' + user.uid + '/user');
   const user_data = {
     id: user.uid,
     email: email,
