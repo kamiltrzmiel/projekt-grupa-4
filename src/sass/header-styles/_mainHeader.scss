@@ -27,6 +27,22 @@
 
 .logo {
   display: none;
+  &__icon {
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  &__box {
+    &:hover,
+    &:focus {
+      color: #ff6b08;
+      transition-duration: 250ms;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      & .logo__icon {
+        background-color: #ff6b08;
+        border-radius: 5px;
+      }
+    }
+  }
 }
 
 @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
@@ -49,6 +65,12 @@
   font-weight: 500;
   font-size: 0.75rem;
   line-height: 0.875rem;
+  &:hover,
+  &:focus {
+    color: #ff6b08;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
   &__is-active {
     position: relative;
     &::after {
@@ -164,6 +186,20 @@
     &__background {
       background-image: url('../assets/header/abstract-bg-desktop.png');
       background-size: 100% 13.5rem;
+    }
+  }
+  .logo {
+    &__box {
+      &:hover,
+      &:focus {
+        transform: scale(1.05);
+      }
+    }
+  }
+  .main-nav {
+    &:hover,
+    &:focus {
+      transform: scale(1.05);
     }
   }
   .search {
