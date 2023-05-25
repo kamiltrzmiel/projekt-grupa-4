@@ -17,7 +17,7 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
 } from 'firebase/auth';
-import { getDatabase, ref, set } from 'firebase/database';
+import { getDatabase, ref, set, get } from 'firebase/database';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -91,6 +91,22 @@ export const reloadHeader = async () => {
     signOutEl.classList.add('hidden');
     dialogBehavior();
   }
+};
+
+export const getMovies = user => {
+  const movies = ref(database, 'users/' + user.uid + '/movies');
+  console.log(movies);
+  get(movies)
+    .then(snapshot => {
+      if (snapshot.exists()) {
+        return snapshot.val();
+      } else {
+        console.log('No data available');
+      }
+    })
+    .catch(error => {
+      console.error(error);
+    });
 };
 
 export const saveMovieToDatabase = (movie, user) => {
