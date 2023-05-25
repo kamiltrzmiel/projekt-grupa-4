@@ -6,19 +6,33 @@
   -webkit-box-shadow: inset 0px 0px 70px 50px rgba(0, 0, 15, 56%);
   -moz-box-shadow: inset 0px 0px 70px 50px rgba(0, 0, 15, 56%);
   box-shadow: inset 0px 0px 70px 50px rgba(0, 0, 15, 56%);
+
   background-image: url('../assets/header-library/mobile_header_library@1x.jpg');
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
   &--library {
+
+    min-width: $breakpointMin;
+
     &__buttons {
       display: flex;
       justify-content: center;
-      gap: 15px;
+      gap: 1.25rem;
+
 
       @media screen and (max-width: 767px) {
-        gap: 20px;
+        gap: 1.25rem;
       }
+
+      @media screen and (min-width: $breakpointTablet) and (max-width: 1199px) {
+        gap: 2rem;
+      }
+
+      @media screen and (min-width: $breakpointDesktop) {
+        gap: 1rem;
+      }
+
     }
   }
 }
@@ -56,7 +70,7 @@
   }
 }
 
-@media screen and (max-width: $breakpointMobile) {
+@media screen and (max-width: 767px) {
 
   @media (min-device-pixel-ratio: 2),
   (min-resolution: 192dpi),
@@ -78,20 +92,20 @@
 }
 
 @media screen and (min-width: $breakpointTablet) and (max-width: 1199px) {
-  .header {
+  .header--library {
     background-image: url('../assets/header-library/tablet_header_library@1x.jpg');
     background-repeat: no-repeat;
     background-size: 100% 100%;
 
-    &__main {
-      margin-bottom: 2.5rem;
-    }
+    // &__main {
+    //   margin-bottom: 2.5rem;
+    // }
 
-    &__title {
-      &__name {
-        display: block;
-      }
-    }
+    // &__title {
+    //   &__name {
+    //     display: block;
+    //   }
+    // }
   }
 
   @media (min-device-pixel-ratio: 2),
@@ -114,20 +128,20 @@
 }
 
 @media screen and (min-width: $breakpointDesktop) {
-  .header {
+  .header--library {
     background-image: url('../assets/header-library/desctop_header_library@1x.jpg');
     background-repeat: no-repeat;
     background-size: 100% 100%;
 
-    &__main {
-      margin-bottom: 2.5rem;
-    }
+    // &__main {
+    //   margin-bottom: 2.5rem;
+    // }
 
-    &__title {
-      &__name {
-        display: block;
-      }
-    }
+    // &__title {
+    //   &__name {
+    //     display: block;
+    //   }
+    // }
   }
 
   @media (min-device-pixel-ratio: 2),
