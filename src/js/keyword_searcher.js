@@ -1,9 +1,6 @@
-import api, { fetchTrendingMovies } from './services/api'; // added function imports from API
-import { fetchMoviesWithQuery } from './services/api';
+import api from './services/api'; // added function imports from API
 import { render } from './services/render';
-import { createPagination } from './services/pagination';
 import { moviesLoading } from './services/loader';
-const searchForm = document.getElementById('search-form');
 const searchInput = document.querySelector('.search__input');
 const searchButton = document.querySelector('.search__icon');
 const searchNotFound = document.querySelector('.search__not-found');
