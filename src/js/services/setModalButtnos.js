@@ -1,8 +1,6 @@
-import { UserMovies } from './userMovies';
-import { getUser, saveMovieToDatabase } from './firebase';
+import { getUser, saveMovieToDatabase, addMovie } from './firebase';
 
 //tworzy nowy obiekt który ma w sobie dane i medoty związane z bazą danych
-export const userMovies = new UserMovies();
 
 //Funkcja pobiera z dokumentu przyciski dodania do obejrzanych i do kolejki oraz przypisuje im funkcje w eventListnerach
 //Funkcja przyjmuje jako argument obiekt - w domyśle dane pobrane z TMDB dane jednego filmu
@@ -13,7 +11,7 @@ const saveMovie = async (data, type) => {
   if (!user) {
     alert('Please first login');
   } else {
-    const dataToSave = userMovies.addMovie(data, type);
+    const dataToSave = addMovie(data, type);
     console.log(dataToSave);
     saveMovieToDatabase(dataToSave, user);
     alert(`Movie saved to ${type} successfully!`);
