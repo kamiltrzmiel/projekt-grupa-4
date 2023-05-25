@@ -20,7 +20,9 @@ renderElement.addEventListener('click', e => {
        <button id="hide-modal" class="footer-modal__closeBtn">
               x
             </button>
-                <img id="modal-image" src="${item.poster_path}" class="modal__image" alt="${item.title}" />
+                <img id="modal-image" src="${item.poster_path}" class="modal__image" alt="${
+        item.title
+      }" />
                 <div id="modal-text" class="modal__text">
                   <div class="modal__description">
                     <h3 class="modal__title">${item.title}</h3>
@@ -28,13 +30,13 @@ renderElement.addEventListener('click', e => {
                   <div id="modal-info" class="modal__info">
                     <p class="modal__info--classification">Vote / Votes</p>
                     <p class="modal__info--detailed">
-                      <span class="modal__info--score">${item.vote_average}</span> /
+                      <span class="modal__info--score">${item.vote_average.toFixed(1)}</span> /
                       <span class="modal__info--score--second">${item.vote_count}</span>
                     </p>
                   </div>
                   <div id="modal-info" class="modal__info">
                     <p class="modal__info--classification">Popularity</p>
-                    <p class="modal__info--detailed">${item.popularity}</p>
+                    <p class="modal__info--detailed">${item.popularity.toFixed(0)}</p>
                   </div>
                   <div id="modal-info" class="modal__info">
                     <p class="modal__info--classification">Original title</p>
