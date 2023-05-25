@@ -21,17 +21,17 @@
       gap: 1.25rem;
 
 
-      @media screen and (max-width: 767px) {
-        gap: 1.25rem;
-      }
+      // @media screen and (max-width: 767px) {
+      //   gap: 1.25rem;
+      // }
 
-      @media screen and (min-width: $breakpointTablet) and (max-width: 1199px) {
-        gap: 2rem;
-      }
+      // @media screen and (min-width: $breakpointTablet) and (max-width: 1199px) {
+      //   gap: 2rem;
+      // }
 
-      @media screen and (min-width: $breakpointDesktop) {
-        gap: 1rem;
-      }
+      // @media screen and (min-width: $breakpointDesktop) {
+      //   gap: 1rem;
+      // }
 
     }
   }
@@ -71,6 +71,9 @@
 }
 
 @media screen and (max-width: 767px) {
+  .header--library {
+    gap: 1.25rem;
+  }
 
   @media (min-device-pixel-ratio: 2),
   (min-resolution: 192dpi),
@@ -93,19 +96,14 @@
 
 @media screen and (min-width: $breakpointTablet) and (max-width: 1199px) {
   .header--library {
+    gap: 2rem;
+  }
+
+  .header--library {
     background-image: url('../assets/header-library/tablet_header_library@1x.jpg');
     background-repeat: no-repeat;
     background-size: 100% 100%;
 
-    // &__main {
-    //   margin-bottom: 2.5rem;
-    // }
-
-    // &__title {
-    //   &__name {
-    //     display: block;
-    //   }
-    // }
   }
 
   @media (min-device-pixel-ratio: 2),
@@ -128,6 +126,10 @@
 }
 
 @media screen and (min-width: $breakpointDesktop) {
+  .header--library {
+    gap: 1rem;
+  }
+
   .header--library {
     background-image: url('../assets/header-library/desctop_header_library@1x.jpg');
     background-repeat: no-repeat;
