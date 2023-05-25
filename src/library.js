@@ -1,7 +1,11 @@
 import './sass/main.scss';
+import './js/services/detailModal';
 import { reloadHeader, setRegisterAndSignUp } from './js/services/firebase';
-import { loadMovies } from './js/services/loadMovies';
+import { initializeLibrary } from './js/services/loadMovies';
+
+const containerEl = document.getElementById('posters');
+
 reloadHeader();
 setRegisterAndSignUp();
 
-loadMovies();
+initializeLibrary('watched');

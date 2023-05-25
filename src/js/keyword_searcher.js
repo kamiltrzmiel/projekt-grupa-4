@@ -4,6 +4,7 @@ import { moviesLoading } from './services/loader';
 const searchInput = document.querySelector('.search__input');
 const searchButton = document.querySelector('.search__icon');
 const searchNotFound = document.querySelector('.search__not-found');
+
 // function do load movies by key-word
 const searchMovies = async query => {
   const renderElement = document.getElementById('posters');
@@ -19,6 +20,7 @@ const searchMovies = async query => {
     searchNotFound.style.visibility = 'visible';
   }
 };
+
 // Do the search movies after clicking the search button
 searchButton.addEventListener('click', event => {
   event.preventDefault();
@@ -30,6 +32,7 @@ searchButton.addEventListener('click', event => {
     }, 400);
   }
 });
+
 // Do the search movies after pressing enter key
 searchInput.addEventListener('keypress', event => {
   if (event.key === 'Enter') {

@@ -9,7 +9,6 @@ export const userMovies = new UserMovies();
 //dlatego najlepiej dorzucić ją do funkcji tworzenia Modala która powinna operować na tym samym obiekcie.
 
 const saveMovie = async (data, type) => {
-  console.log(data);
   const user = await getUser();
   if (!user) {
     alert('Please first login');
