@@ -58,8 +58,29 @@ const resetFields = () => {
   userPasswordEl.value = '';
 };
 
+//Funkcja sprawdza czy użytkownik jest zalogowany czy nie - jeśli tak to zwraca obiekt USER
+
+export const getUser = async () => {
+  try {
+    const auth = getAuth();
+    const user = await new Promise((resolve, reject) => {
+      const unsubscribe = onAuthStateChanged(auth, resolve);
+      // Unsubscribe the listener after the initial state check
+      unsubscribe();
+    });
+    if (user) {
+      return user;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    console.error('Error checking user state:', error);
+  }
+};
+
+//Funkcja przeładowuje nagłówek w zależności od tego czy user jest zalogowany czy nie.
 export const reloadHeader = async () => {
-  const logged = await checkUserState();
+  const logged = await getUser();
   if (logged) {
     libraryEl.classList.remove('hidden');
     signInEl.classList.add('hidden');
@@ -72,28 +93,24 @@ export const reloadHeader = async () => {
   }
 };
 
-//Funkcja sprawdza czy użytkownik jest zalogowany czy nie
-const checkUserState = async () => {
-  try {
-    const auth = getAuth();
-    const user = await new Promise((resolve, reject) => {
-      const unsubscribe = onAuthStateChanged(auth, resolve);
-      // Unsubscribe the listener after the initial state check
-      unsubscribe();
+export const saveMovieToDatabase = (movie, user) => {
+  const userRef = ref(database, 'users/' + user.uid + `/movies/${movie.id}`);
+
+  const movieData = {
+    title: movie.title,
+    poster_path: movie.poster_path,
+    release_date: movie.release_date,
+    type: movie.type,
+    vote_average: movie.vote_average,
+    genres: movie.genre_ids.toString(),
+  };
+  set(userRef, movieData)
+    .then(() => {
+      console.log('movie saved');
+    })
+    .catch(error => {
+      console.error('Error saving user to database:', error);
     });
-    if (user) {
-      // User is signed in
-      console.log('USER LOGGED');
-      return true;
-    } else {
-      // User is not signed in
-      console.log('USER NOT LOGGED');
-      return false;
-    }
-  } catch (error) {
-    console.error('Error checking user state:', error);
-    throw error;
-  }
 };
 
 //Funkcja zapisuje użytkownika do bazy danych

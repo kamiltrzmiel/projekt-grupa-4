@@ -34,8 +34,8 @@ export class UserMovies {
       vote_average: element.vote_average,
       release_date: element.release_date,
       genre_ids: element.genres.map(genre => genre.id),
+      type: type,
     };
-    type === 'watched' ? (movie.type = 'watched') : (movie.type = 'queued');
-    this.checkMovie(movie, this.#movies, type);
+    return movie;
   }
 }

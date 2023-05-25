@@ -1,5 +1,6 @@
 import api from './api';
 const renderElement = document.getElementById('posters');
+import { setModalButtons } from './setModalButtnos';
 
 renderElement.addEventListener('click', e => {
   const detailDialogEl = document.getElementById('modal-backdrop');
@@ -61,6 +62,7 @@ renderElement.addEventListener('click', e => {
             </div>`;
       const closeDetailModalBtn = document.getElementById('hide-modal');
       closeDetailModalBtn.addEventListener('click', () => detailDialogEl.close());
+      setModalButtons(item);
     } catch (error) {
       console.log(error);
     }
