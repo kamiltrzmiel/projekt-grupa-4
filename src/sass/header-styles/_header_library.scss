@@ -25,19 +25,19 @@
 
 .button {
   &--library {
-    padding-top: 14px;
-    padding-bottom: 12px;
+    padding-top: 0.875rem;
+    padding-bottom: 0.75rem;
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 500;
-    font-size: 12px;
+    font-size: 0.75rem;
     line-height: 133%;
     color: var(--bg-white);
     background-color: transparent;
     border: 1px solid var(--bg-white);
-    border-radius: 5px;
+    border-radius: 0.313rem;
     text-transform: uppercase;
-    width: 130px;
+    min-width: 130px;
     cursor: pointer;
     transition-duration: 250ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
