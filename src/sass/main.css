@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 /* ------------------------------ GLOBAL STYLES ----------------------------- */
 *,
 :root {
@@ -20,7 +20,7 @@
 }
 
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   width: 100%;
   font-size: 100%;
   max-width: 1600px;
@@ -59,13 +59,14 @@ img {
 .main-nav {
   display: block;
   text-transform: uppercase;
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-weight: 500;
   font-size: 0.75rem;
   line-height: 0.875rem;
 }
 
-.container__nav, .container__nav--menu {
+.container__nav,
+.container__nav--menu {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -87,7 +88,7 @@ img {
   border: none;
   border-bottom: 1px solid black;
   outline: none;
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-size: 0.875rem;
   line-height: 1rem;
 }
@@ -118,7 +119,7 @@ img {
 .posters__img {
   width: 100%;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border-radius: 5px;
   margin-bottom: 0.625rem;
 }
@@ -173,6 +174,110 @@ img {
     margin-bottom: 0.75rem;
   }
 }
+/* ----------------------------- PAGINATION STYLES ----------------------------- */
+#pagination {
+  flex-shrink: 0;
+  margin-bottom: 40px;
+  height: 50px;
+  margin-top: 0;
+  @media (min-width: 768px) {
+    margin-bottom: 60px;
+  }
+  .tui-page-btn {
+    border: none;
+    line-height: 1.2px;
+    font-weight: 500;
+    color: #000;
+    &:hover {
+      background-color: #e5e5e5;
+    }
+    @media (min-width: 768px) {
+      font-size: 14px;
+    }
+  }
+
+  .tui-is-selected {
+    width: 25px;
+    height: 25px;
+    display: inline-flex;
+    background-color: #ff6b08;
+    color: white;
+    border-radius: 5px;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+    &:hover {
+      background-color: #ff6b08;
+    }
+    @media (min-width: 768px) {
+      width: 40px;
+      height: 40px;
+    }
+  }
+  .tui-ico-first,
+  .tui-ico-last {
+    margin-top: 8px;
+  }
+  .tui-ico-first {
+    @media (min-width: 768px) {
+      margin-right: 10px;
+    }
+  }
+  .tui-ico-last {
+    @media (min-width: 768px) {
+      margin-left: 10px;
+    }
+  }
+  .tui-prev {
+    margin-right: 5px;
+    @media (min-width: 768px) {
+      margin-right: 10px;
+    }
+  }
+  .tui-next {
+    margin-left: 5px;
+    @media (min-width: 768px) {
+      margin-left: 10px;
+    }
+  }
+  .tui-prev,
+  .tui-next {
+    width: 25px;
+    height: 25px;
+
+    background-color: #f7f7f7;
+    border-radius: 5px;
+    position: relative;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    &:hover {
+      color: white;
+      background-color: #d4d4d4;
+    }
+    @media (min-width: 768px) {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .tui-ico-next,
+  .tui-ico-prev {
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-position: center;
+  }
+  .tui-ico-prev {
+    background-image: url('../assets/pagination/arrow-left.svg');
+  }
+  .tui-ico-next {
+    background-image: url('../assets/pagination/arrow-right.svg');
+  }
+}
+
 /* ------------------------------ FOOTER STYLES ----------------------------- */
 .footer {
   background-color: #f7f7f7;
@@ -291,4 +396,4 @@ dialog::backdrop {
   .footer-modal {
     max-width: 500px;
   }
-}/*# sourceMappingURL=main.css.map */
+} /*# sourceMappingURL=main.css.map */
