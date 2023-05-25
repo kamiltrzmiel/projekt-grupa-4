@@ -1,1 +1,0 @@
-{"mappings":"sfAGA,EAAAA,EAAAC,iBACA,EAAAD,EAAAE","sources":["src/library.js"],"sourcesContent":["import './sass/main.scss';\nimport { reloadHeader, setRegisterAndSignUp } from './js/services/firebase';\n\nreloadHeader();\nsetRegisterAndSignUp();\n"],"names":["$7zgG6","reloadHeader","setRegisterAndSignUp"],"version":3,"file":"library.16429693.js.map"}
