@@ -2,62 +2,13 @@
 @import '../global-styles/globals';
 
 .header {
-  // margin: 0;
-  // padding: 0;
-  // width: 100%;
-  // min-width: $breakpointMin;
-  // height: 230px;
-  // background: rgba(0, 0, 0, 0.56);
-  // -webkit-box-shadow: inset 0px 0px 70px 50px rgba(0, 0, 15, 56%);
-  // -moz-box-shadow: inset 0px 0px 70px 50px rgba(0, 0, 15, 56%);
-  // box-shadow: inset 0px 0px 70px 50px rgba(0, 0, 15, 56%);
-  // color: var(--text-white);
-
+  background: rgba(0, 0, 0, 0.56);
+  -webkit-box-shadow: inset 0px 0px 70px 50px rgba(0, 0, 15, 56%);
+  -moz-box-shadow: inset 0px 0px 70px 50px rgba(0, 0, 15, 56%);
+  box-shadow: inset 0px 0px 70px 50px rgba(0, 0, 15, 56%);
   background-image: url('../assets/header-library/mobile_header_library@1x.jpg');
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  // padding-top: 2.5rem;
-  // padding-bottom: 2.75rem;
-
-  &__main {
-    margin-bottom: 3.375rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  &__title {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-
-    &__name {
-      display: none;
-      font-size: 1.875rem;
-    }
-  }
-
-  &__nav {
-    display: flex;
-    gap: 2.5rem;
-    font-size: var(--fs-300);
-    text-transform: uppercase;
-    font-weight: 500;
-
-    &__active {
-      position: relative;
-
-      &::after {
-        content: '';
-        position: absolute;
-        top: 14px;
-        left: 0;
-        width: 100%;
-        height: 3px;
-        background-color: var(--text-red-warn);
-      }
-    }
-  }
 
   &--library {
     &__buttons {
@@ -74,11 +25,6 @@
 
 .button {
   &--library {
-    // padding-top: 0.75rem;
-    // display: flex;
-    // gap: 1.25rem;
-    // justify-content: center;
-
     padding-top: 14px;
     padding-bottom: 12px;
     font-family: 'Roboto';
@@ -91,7 +37,7 @@
     border: 1px solid var(--bg-white);
     border-radius: 5px;
     text-transform: uppercase;
-    min-width: 130px;
+    width: 130px;
     cursor: pointer;
     transition-duration: 250ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -202,5 +148,3 @@
     }
   }
 }
-
-@media screen and (min-width: $breakpointTablet) {}
