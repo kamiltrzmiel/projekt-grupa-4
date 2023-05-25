@@ -93,26 +93,24 @@ export const reloadHeader = async () => {
   }
 };
 
-export const getMovies = user => {
-  const movies = ref(database, 'users/' + user.uid + '/movies');
-  console.log(movies);
-  get(movies)
-    .then(snapshot => {
-      if (snapshot.exists()) {
-        return snapshot.val();
-      } else {
-        console.log('No data available');
-      }
-    })
-    .catch(error => {
-      console.error(error);
-    });
+export const getMovies = async user => {
+  try {
+    const snapshot = await get(ref(database, 'users/' + user.uid + '/movies'));
+    if (snapshot.exists()) {
+      return snapshot.val();
+    } else {
+      console.log('No data available');
+      return false;
+    }
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const saveMovieToDatabase = (movie, user) => {
   const userRef = ref(database, 'users/' + user.uid + `/movies/${movie.id}`);
-
   const movieData = {
+    id: movie.id,
     title: movie.title,
     poster_path: movie.poster_path,
     release_date: movie.release_date,

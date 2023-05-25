@@ -49,7 +49,7 @@ const fetchTrendingMovies = async page => {
   try {
     const response = await api.fetchTrendingMovies(page);
     const data = response.data.results;
-    render(data, renderElement, true);
+    render(data, renderElement, false);
   } catch (error) {
     console.log(error);
   }
