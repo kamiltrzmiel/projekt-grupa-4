@@ -1,24 +1,25 @@
-<div class="header header--library">
-  <div class="container">
-    <div class="header__main">
-      <div class="header__title">
-        <a href="./index.html">
-          <img src="./assets/film.svg" alt="logo" class="header__title__logo" />
-        </a>
-        <a href="./index.html">
-          <h1 class="header__title__name">Filmoteka</h1>
-        </a>
+<header class="header header--library">
+  <div class="container container__header">
+    <nav>
+      <div class="container__nav">
+        <a href="./index.html" class="logo__box"
+          ><img src="./assets/film.svg" alt="logo" width="24px" /><span class="logo"
+            >Filmoteka</span
+          ></a
+        >
+        <div class="container__nav--menu">
+          <a href="./index.html"><span class="main-nav">home</span></a>
+          <a id="library-link" href="./library.html"
+            ><span class="main-nav main-nav__is-active">my library</span></a
+          >
+          <a id="sign-in" href="#" class="main-nav hidden">SIGN IN</a>
+          <a id="logout-btn" href="#" class="main-nav hidden">SIGN OUT</a>
+        </div>
       </div>
-
-      <nav class="header__nav">
-        <a href="./index.html">HOME</a>
-        <a href="./library.html" class="header__nav__active">MY LIBRARY</a>
-      </nav>
-    </div>
-
+    </nav>
     <div class="header--library__buttons">
       <button id="user-watched-btn" class="button button--library">WATCHED</button>
       <button id="user-queue-btn" class="button button--library">QUEUE</button>
     </div>
   </div>
-</div>
+</header>
