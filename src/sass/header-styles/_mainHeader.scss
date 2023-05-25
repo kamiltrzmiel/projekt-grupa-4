@@ -111,6 +111,12 @@
     top: 0.25rem;
     cursor: pointer;
     background: none;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    &:hover {
+      background-color: #ff6b08;
+      border-radius: 50%;
+    }
   }
   &__not-found {
     font-size: 0.875rem;
@@ -197,17 +203,30 @@
     }
   }
   .main-nav {
+    font-size: 0.875rem;
     &:hover,
     &:focus {
       transform: scale(1.05);
     }
   }
   .search {
+    &__box {
+      &:hover,
+      &:focus {
+        transform: scale(1.05);
+      }
+    }
     &__input {
-      width: 24.625rem;
+      width: 25rem;
+      &::placeholder {
+        font-size: 1rem;
+      }
     }
     &__icon {
       right: calc((100% - 24.625rem) / 2);
+      &:hover {
+        transform: rotate(90deg) scale(1.05);
+      }
     }
   }
 }
