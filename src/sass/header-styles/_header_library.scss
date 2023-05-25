@@ -58,6 +58,18 @@
       }
     }
   }
+
+  &--library {
+    &__buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+
+      @media screen and (max-width: 767px) {
+        gap: 20px;
+      }
+    }
+  }
 }
 
 .button {
@@ -79,7 +91,7 @@
     border: 1px solid var(--bg-white);
     border-radius: 5px;
     text-transform: uppercase;
-    width: 130px;
+    min-width: 130px;
     cursor: pointer;
     transition-duration: 250ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -99,14 +111,19 @@
 }
 
 @media screen and (max-width: $breakpointMobile) {
-  @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+
+  @media (min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
     .header--library {
       background-image: url('../assets/header-library/mobile_header_library@2x.jpg');
       background-size: 100% 14.375rem;
     }
   }
 
-  @media (min-device-pixel-ratio: 3), (min-resolution: 288dpi), (min-resolution: 3dppx) {
+  @media (min-device-pixel-ratio: 3),
+  (min-resolution: 288dpi),
+  (min-resolution: 3dppx) {
     .header--library {
       background-image: url('../assets/header-library/mobile_header_library@3x.jpg');
       background-size: 100% 14.375rem;
@@ -131,14 +148,18 @@
     }
   }
 
-  @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+  @media (min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
     .header--library {
       background-image: url('../assets/header-library/tablet_header_library@2x.jpg');
       background-size: 100% 14.375rem;
     }
   }
 
-  @media (min-device-pixel-ratio: 3), (min-resolution: 288dpi), (min-resolution: 3dppx) {
+  @media (min-device-pixel-ratio: 3),
+  (min-resolution: 288dpi),
+  (min-resolution: 3dppx) {
     .header--library {
       background-image: url('../assets/header-library/tablet_header_library@3x.jpg');
       background-size: 100% 14.375rem;
@@ -163,14 +184,18 @@
     }
   }
 
-  @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+  @media (min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
     .header--library {
       background-image: url('../assets/header-library/desctop_header_library@2x.jpg');
       background-size: 100% 14.375rem;
     }
   }
 
-  @media (min-device-pixel-ratio: 3), (min-resolution: 288dpi), (min-resolution: 3dppx) {
+  @media (min-device-pixel-ratio: 3),
+  (min-resolution: 288dpi),
+  (min-resolution: 3dppx) {
     .header--library {
       background-image: url('../assets/header-library/desctop_header_library@3x.jpg');
       background-size: 100% 14.375rem;
@@ -178,5 +203,4 @@
   }
 }
 
-@media screen and (min-width: $breakpointTablet) {
-}
+@media screen and (min-width: $breakpointTablet) {}
