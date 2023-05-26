@@ -19,20 +19,6 @@
       display: flex;
       justify-content: center;
       gap: 1.25rem;
-
-
-      // @media screen and (max-width: 767px) {
-      //   gap: 1.25rem;
-      // }
-
-      // @media screen and (min-width: $breakpointTablet) and (max-width: 1199px) {
-      //   gap: 2rem;
-      // }
-
-      // @media screen and (min-width: $breakpointDesktop) {
-      //   gap: 1rem;
-      // }
-
     }
   }
 }
@@ -52,6 +38,7 @@
     border-radius: 0.313rem;
     text-transform: uppercase;
     min-width: 130px;
+    max-width: 152px;
     cursor: pointer;
     transition-duration: 250ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -72,7 +59,9 @@
 
 @media screen and (max-width: 767px) {
   .header--library {
-    gap: 1.25rem;
+    &__buttons {
+      gap: 1.25rem;
+    }
   }
 
   @media (min-device-pixel-ratio: 2),
@@ -96,7 +85,9 @@
 
 @media screen and (min-width: $breakpointTablet) and (max-width: 1199px) {
   .header--library {
-    gap: 2rem;
+    &__buttons {
+      gap: 2rem;
+    }
   }
 
   .header--library {
@@ -127,7 +118,9 @@
 
 @media screen and (min-width: $breakpointDesktop) {
   .header--library {
-    gap: 1rem;
+    &__buttons {
+      gap: 1rem;
+    }
   }
 
   .header--library {
@@ -135,15 +128,6 @@
     background-repeat: no-repeat;
     background-size: 100% 100%;
 
-    // &__main {
-    //   margin-bottom: 2.5rem;
-    // }
-
-    // &__title {
-    //   &__name {
-    //     display: block;
-    //   }
-    // }
   }
 
   @media (min-device-pixel-ratio: 2),
