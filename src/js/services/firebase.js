@@ -217,3 +217,16 @@ export const setRegisterAndSignUp = () => {
       });
   });
 };
+
+export const addMovie = (element, type) => {
+  const movie = {
+    id: element.id,
+    title: element.title,
+    poster_path: element.poster_path,
+    vote_average: element.vote_average,
+    release_date: element.release_date,
+    genre_ids: element.genres.map(genre => genre.id),
+    type: type,
+  };
+  return movie;
+};

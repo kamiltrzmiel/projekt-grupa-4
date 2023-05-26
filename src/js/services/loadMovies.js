@@ -1,5 +1,6 @@
 import { getUser, getMovies } from './firebase';
 import { render } from './render';
+import { moviesLoading } from './loader';
 
 const containerEl = document.getElementById('posters');
 const watchedBtn = document.getElementById('user-watched-btn');
@@ -19,16 +20,24 @@ const getMoviesArray = async type => {
   const object = await getMoviesObject();
   const movieArray = Object.values(object);
   const updatedMovieArray = movieArray.map(movie => {
-    return {
-      ...movie,
-      genre_ids: convertGenresToArray(movie.genres),
-    };
+    if (movie.genres) {
+      return {
+        ...movie,
+        genre_ids: convertGenresToArray(movie.genres),
+      };
+    } else {
+      return {
+        ...movie,
+        genre_ids: [],
+      };
+    }
   });
   const filteredMovieArray = updatedMovieArray.filter(movie => movie.type === type);
   return filteredMovieArray;
 };
 
 export const initializeLibrary = async type => {
+  moviesLoading();
   const data = await getMoviesArray(type);
   if (data.length === 0) {
     alert(`There are no movies in your ${type} list!`);
