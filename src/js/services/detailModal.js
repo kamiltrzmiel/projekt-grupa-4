@@ -21,7 +21,7 @@ renderElement.addEventListener('click', e => {
         : (item.poster_path = placeholder);
       detailDialogEl.innerHTML = `<div class="container">
       <div id="modal-wrapper" class="modal">
-       <button id="hide-modal" class="footer-modal__closeBtn">
+        <button id="hide-modal" class="footer-modal__closeBtn">
               x
             </button>
                 <img id="modal-image" src="${item.poster_path}" class="modal__image" alt="${
