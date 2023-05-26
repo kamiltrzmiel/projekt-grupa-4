@@ -8,6 +8,7 @@ renderElement.addEventListener('click', e => {
   if (!e.target.parentNode.classList.contains('posters__box')) return;
 
   const id = e.target.parentNode.dataset.id;
+  detailDialogEl.innerHTML = '';
 
   const fetchMovieById = async id => {
     try {
@@ -22,8 +23,8 @@ renderElement.addEventListener('click', e => {
       detailDialogEl.innerHTML = `<div class="container">
       <div id="modal-wrapper" class="modal">
         <button id="hide-modal" class="footer-modal__closeBtn">
-              x
-            </button>
+         x
+        </button>
                 <img id="modal-image" src="${item.poster_path}" class="modal__image" alt="${
         item.title
       }" />
@@ -66,6 +67,11 @@ renderElement.addEventListener('click', e => {
       const closeDetailModalBtn = document.getElementById('hide-modal');
       closeDetailModalBtn.addEventListener('click', () => detailDialogEl.close());
       setModalButtons(item);
+      detailDialogEl.addEventListener('click', e => {
+        if (e.currentTarget === e.target) {
+          detailDialogEl.close();
+        }
+      });
     } catch (error) {
       console.log(error);
     }
