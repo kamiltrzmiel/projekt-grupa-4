@@ -4,6 +4,9 @@ import { setModalButtons } from './setModalButtnos';
 
 renderElement.addEventListener('click', e => {
   const detailDialogEl = document.getElementById('modal-backdrop');
+
+  if (!e.target.parentNode.classList.contains('posters__box')) return;
+
   const id = e.target.parentNode.dataset.id;
 
   const fetchMovieById = async id => {
