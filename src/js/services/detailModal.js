@@ -1,9 +1,13 @@
 import api from './api';
+import { API_KEY } from '../variables/constants';
+import axios from 'axios';
 const renderElement = document.getElementById('posters');
 import { setModalButtons } from './setModalButtnos';
+const defTrailerUrl = 'https://www.youtube.com/embed/';
 
 renderElement.addEventListener('click', e => {
   const detailDialogEl = document.getElementById('modal-backdrop');
+  const trailerEl = document.querySelector('.trailer-btn');
 
   if (!e.target.parentNode.classList.contains('posters__box')) return;
 
@@ -14,7 +18,6 @@ renderElement.addEventListener('click', e => {
     try {
       const response = await api.fetchMovieById(id);
       const item = response.data;
-      // console.log(item);
       const genres = item.genres.map(movie => movie.name).join(', ');
 
       item.poster_path
@@ -83,6 +86,18 @@ renderElement.addEventListener('click', e => {
           detailDialogEl.close();
         }
       });
+
+      // wyszukiwanie trailera po id
+      const movieId = response.data.id;
+      const index = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/videos`, {
+        params: {
+          api_key: API_KEY,
+        },
+      });
+
+      // lista trailerów, z czego trzeba wybrać "Official Trailer"
+      const trailerList = index.data.results;
+      console.log(trailerList);
     } catch (error) {
       console.log(error);
     }
@@ -90,7 +105,3 @@ renderElement.addEventListener('click', e => {
   fetchMovieById(id);
   detailDialogEl.showModal();
 });
-
-//TRAILER
-
-//1. sprawdź czy jest zwiastun filmu
