@@ -14,7 +14,7 @@ renderElement.addEventListener('click', e => {
     try {
       const response = await api.fetchMovieById(id);
       const item = response.data;
-      console.log(item);
+      // console.log(item);
       const genres = item.genres.map(movie => movie.name).join(', ');
 
       item.poster_path

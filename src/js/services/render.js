@@ -23,7 +23,11 @@ export function render(data, renderElement, renderVotes) {
               ${genre_ids.map(genre => ` ${translateIdToGenre(genre)}`)}
               |
               ${new Date(release_date).getFullYear()}
-              ${renderVotes ? `<span class="posters__ranking">${vote_average}</span>` : ''}
+              ${
+                renderVotes
+                  ? `<span class="posters__ranking">${vote_average.toFixed(1)}</span>`
+                  : ''
+              }
             </p>
           </figcaption>
         </figure>
