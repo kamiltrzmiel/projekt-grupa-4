@@ -8,6 +8,7 @@ renderElement.addEventListener('click', e => {
   if (!e.target.parentNode.classList.contains('posters__box')) return;
 
   const id = e.target.parentNode.dataset.id;
+  detailDialogEl.innerHTML = '';
 
   const fetchMovieById = async id => {
     try {
@@ -21,9 +22,11 @@ renderElement.addEventListener('click', e => {
         : (item.poster_path = placeholder);
       detailDialogEl.innerHTML = `<div class="container">
       <div id="modal-wrapper" class="modal">
-       <button id="hide-modal" class="footer-modal__closeBtn">
-              x
-            </button>
+      <button id="hide-modal" class="footer-modal__closeBtn">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32">
+          <path d="M32 3.223l-3.223-3.223-12.777 12.777-12.777-12.777-3.223 3.223 12.777 12.777-12.777 12.777 3.223 3.223 12.777-12.777 12.777 12.777 3.223-3.223-12.777-12.777 12.777-12.777z"></path>
+        </svg>
+    </button>
                 <img id="modal-image" src="${item.poster_path}" class="modal__image" alt="${
         item.title
       }" />
@@ -66,6 +69,11 @@ renderElement.addEventListener('click', e => {
       const closeDetailModalBtn = document.getElementById('hide-modal');
       closeDetailModalBtn.addEventListener('click', () => detailDialogEl.close());
       setModalButtons(item);
+      detailDialogEl.addEventListener('click', e => {
+        if (e.currentTarget === e.target) {
+          detailDialogEl.close();
+        }
+      });
     } catch (error) {
       console.log(error);
     }
