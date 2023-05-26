@@ -1,7 +1,7 @@
 import api from './api';
 
 const defTrailerUrl = 'https://www.youtube.com/embed/';
-const trailerEl = document.querySelector('.tariler-btn');
+const trailerEl = document.querySelector('.trailer-btn');
 
 const fetchTrailerById = async id => {
   try {
