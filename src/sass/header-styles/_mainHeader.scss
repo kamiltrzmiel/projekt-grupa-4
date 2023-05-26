@@ -27,6 +27,22 @@
 
 .logo {
   display: none;
+  &__icon {
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  &__box {
+    &:hover,
+    &:focus {
+      color: #ff6b08;
+      transition-duration: 250ms;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      & .logo__icon {
+        background-color: #ff6b08;
+        border-radius: 5px;
+      }
+    }
+  }
 }
 
 @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
@@ -49,6 +65,12 @@
   font-weight: 500;
   font-size: 0.75rem;
   line-height: 0.875rem;
+  &:hover,
+  &:focus {
+    color: #ff6b08;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
   &__is-active {
     position: relative;
     &::after {
@@ -89,6 +111,12 @@
     top: 0.25rem;
     cursor: pointer;
     background: none;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    &:hover {
+      background-color: #ff6b08;
+      border-radius: 50%;
+    }
   }
   &__not-found {
     font-size: 0.875rem;
@@ -166,12 +194,39 @@
       background-size: 100% 13.5rem;
     }
   }
+  .logo {
+    &__box {
+      &:hover,
+      &:focus {
+        transform: scale(1.05);
+      }
+    }
+  }
+  .main-nav {
+    font-size: 0.875rem;
+    &:hover,
+    &:focus {
+      transform: scale(1.05);
+    }
+  }
   .search {
+    &__box {
+      &:hover,
+      &:focus {
+        transform: scale(1.05);
+      }
+    }
     &__input {
-      width: 24.625rem;
+      width: 25rem;
+      &::placeholder {
+        font-size: 1rem;
+      }
     }
     &__icon {
       right: calc((100% - 24.625rem) / 2);
+      &:hover {
+        transform: rotate(90deg) scale(1.05);
+      }
     }
   }
 }
