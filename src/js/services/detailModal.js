@@ -1,6 +1,4 @@
-import api, { fetchTrailerById, fetchTrendingMovies } from './api';
-import { API_KEY } from '../variables/constants';
-import axios from 'axios';
+import api, { fetchTrailerById } from './api';
 const renderElement = document.getElementById('posters');
 import { setModalButtons } from './setModalButtnos';
 const defTrailerUrl = 'https://www.youtube.com/embed/';
