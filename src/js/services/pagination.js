@@ -1,97 +1,55 @@
 import api from './api';
-import { fetchMoviesWithQuery } from './api';
-import { render } from './render';
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 
-function fetchMoviesWithQuery(query, page, perPage) {
-  return api.fetchMovies(query, page, perPage);
-}
-// function renderMovies(movies, renderElement, renderVotes) {
-//   render(movies, renderElement, renderVotes);
-// }
+const itemsPerPage = 10;
+let page = 1;
+let currentPage = page;
 
-function renderMovies(movies, renderElement) {
-  const newMovies = movies.map(
-    ({ id, title, poster_path, vote_average, release_date, genre_ids }) => {
-      poster_path
-        ? (poster_path = `https://image.tmdb.org/t/p/w500/${poster_path}`)
-        : (poster_path = placeholder);
-      return `
-      <figure
-        class="posters__box"
-        tabindex="0"
-        role="button"
-        aria-label="${title}"
-        data-id="${id}"
-      >
-        <img src="${poster_path}" alt="${title}" class="posters__img" />
-        <figcaption>
-          <h3 id="poster-title" class="posters__title">${title}</h3>
-          <p class="posters__details">
-            ${genre_ids.map(genre => ` ${translateIdToGenre(genre)}`)}
-            |
-            ${new Date(release_date).getFullYear()}
-            ${renderVotes ? `<span class="posters__ranking">${vote_average.toFixed(1)}</span>` : ''}
-          </p>
-        </figcaption>
-      </figure>
-    `;
-    },
-  );
+const totalItems = 500;
+const visiblePages = 5;
+const searchQuery = 'example';
 
-  renderElement.insertAdjacentHTML('beforeend', newMovies.join(''));
+const pagination = new Pagination(document.getElementById('pagination'), {
+  totalItems: totalItems,
+  itemsPerPage: itemsPerPage,
+  visiblePages: visiblePages,
+  centerAlign: true,
+});
+
+pagination.on('afterMove', event => {
+  const page = event.page;
+  currentPage = page;
+  console.log('Current Page:', currentPage);
+  getData(page);
+});
+
+async function getData(page) {
+  try {
+    const response = await api.fetchMoviesWithQuery(searchQuery, page);
+    const data = response.data;
+    renderData(data.results);
+    pagination.setTotalItems(data.total_results);
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
 }
 
-// creating pagination
-export function createPagination(totalItems, visiblePages, searchQuery) {
-  const itemsPerPage = 24;
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
-  const calculatedVisiblePages = Math.min(totalPages, visiblePages);
+function renderData(items) {
+  const container = document.getElementById('posters');
+  const existingElements = Array.from(container.children);
 
-  const options = {
-    itemsPerPage: itemsPerPage,
-    totalItems: totalItems,
-    visiblePages: calculatedVisiblePages,
-    centerAlign: true,
-    firstItemClassName: 'tui-first-child',
-    lastItemClassName: 'tui-last-child',
-
-    pagination: 'tui-pagination',
-    button: 'tui-page-btn',
-    buttonActive: 'tui-is-selected',
-    buttonFirst: 'tui-ico-first',
-    buttonLast: 'tui-ico-last',
-    buttonNext: 'tui-ico-next',
-    buttonPrev: 'tui-ico-prev',
-  };
-
-  const container = document.getElementById('tui-pagination-container');
-  const pagination = new Pagination(container, options);
-  const renderElement = document.getElementById('posters');
-
-  // "afterMove" after changing page
-  pagination.on('afterMove', event => {
-    const currentPage = event.page;
-    console.log('Current Page:', currentPage);
-    fetchMoviesWithQuery(searchQuery, currentPage, itemsPerPage)
-      .then(response => {
-        const movies = response.data.results;
-        // view update after receiving datas
-        renderMovies(movies, renderElement, false);
-      })
-      .catch(error => {
-        console.error('Error fetching movies:', error);
-      });
+  existingElements.forEach((element, index) => {
+    if (items[index]) {
+      element.textContent = items[index].name;
+    }
   });
 
-  return pagination;
+  for (let i = existingElements.length; i < items.length; i++) {
+    const element = document.createElement('div');
+    element.textContent = items[i].name;
+    container.appendChild(element);
+  }
 }
 
-// example using paginate
-const totalItems = 100; // Przykładowa liczba wszystkich elementów
-const visiblePages = 5; // Przykładowa liczba widocznych stron
-const searchInput = document.querySelector('.search__input');
-const searchQuery = searchInput.value.trim();
-
-createPagination(totalItems, visiblePages, searchQuery);
+getData(page);
