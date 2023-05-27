@@ -105,15 +105,16 @@ renderElement.addEventListener('click', e => {
       console.log(trailerList);
       const trailerBtn = document.querySelector('.trailer-btn');
       const trailerEl = document.getElementById('trailer-container');
-      const player = `<iframe width="560" height="315" src="${defTrailerUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
-
-      // if (trailerList.)
 
       for (const trailer of trailerList) {
         if (trailer.name !== 'Official Trailer') {
           continue;
         } else {
-          console.log(trailerList.indexOf(trailer));
+          const player = `<iframe width="560" height="315" src="${defTrailerUrl}${trailer.key}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+          trailerBtn.classList.remove('hidden');
+          trailerBtn.addEventListener('click', () => {
+            trailerEl.innerHTML = player;
+          });
         }
       }
     } catch (error) {
