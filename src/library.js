@@ -7,5 +7,8 @@ import { moviesLoading } from './js/services/loader';
 reloadHeader();
 setRegisterAndSignUp();
 
+const watchedBtn = document.getElementById('user-watched-btn');
+watchedBtn.focus();
+
 moviesLoading();
 initializeLibrary('watched');
