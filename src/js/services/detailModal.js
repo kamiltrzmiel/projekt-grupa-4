@@ -103,7 +103,6 @@ renderElement.addEventListener('click', e => {
       const trailer = trailerList.find(({ official, type}) => type === 'Trailer' && official === true)
       trailerEl.addEventListener("click", () => {
         const trailer = trailerList.find(({ official, type}) => type === 'Trailer' && official === true)
-        console.log(`https://www.youtube.com/embed?v=${trailer.key}`)
         const trailerPlayer = document.querySelector(".trailer-btn-box")
         trailerPlayer.innerHTML=`
         <iframe
