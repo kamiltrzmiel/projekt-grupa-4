@@ -8,7 +8,8 @@ reloadHeader();
 setRegisterAndSignUp();
 
 const watchedBtn = document.getElementById('user-watched-btn');
-watchedBtn.focus();
+watchedBtn.style.backgroundColor = 'var(--text-orange)';
+watchedBtn.style.borderColor = 'var(--text-orange)';
 
 moviesLoading();
 initializeLibrary('watched');

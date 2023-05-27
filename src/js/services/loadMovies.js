@@ -46,5 +46,17 @@ export const initializeLibrary = async type => {
   render(data, containerEl, true);
 };
 
-watchedBtn.addEventListener('click', () => initializeLibrary('watched'));
-queuedBtn.addEventListener('click', () => initializeLibrary('queued'));
+watchedBtn.addEventListener('click', () => {
+  initializeLibrary('watched');
+  watchedBtn.style.backgroundColor = 'var(--text-orange)';
+  watchedBtn.style.borderColor = 'var(--text-orange)';
+  queuedBtn.style.backgroundColor = 'transparent';
+  queuedBtn.style.borderColor = 'var(--text-white)';
+});
+queuedBtn.addEventListener('click', () => {
+  initializeLibrary('queued');
+  watchedBtn.style.backgroundColor = 'transparent';
+  watchedBtn.style.borderColor = 'var(--text-white)';
+  queuedBtn.style.backgroundColor = 'var(--text-orange)';
+  queuedBtn.style.borderColor = 'var(--text-orange)';
+});
