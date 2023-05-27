@@ -1,5 +1,5 @@
 import { getUser, saveMovieToDatabase, addMovie } from './firebase';
-
+import Notiflix from 'notiflix';
 //tworzy nowy obiekt który ma w sobie dane i medoty związane z bazą danych
 
 //Funkcja pobiera z dokumentu przyciski dodania do obejrzanych i do kolejki oraz przypisuje im funkcje w eventListnerach
@@ -9,12 +9,12 @@ import { getUser, saveMovieToDatabase, addMovie } from './firebase';
 const saveMovie = async (data, type) => {
   const user = await getUser();
   if (!user) {
-    alert('Please first login');
+    Notiflix.Notify.warning('Please first login');
   } else {
     const dataToSave = addMovie(data, type);
     console.log(dataToSave);
     saveMovieToDatabase(dataToSave, user);
-    alert(`Movie saved to ${type} successfully!`);
+    Notiflix.Notify.success(`Movie saved to ${type} successfully!`);
   }
 };
 

@@ -156,7 +156,7 @@ export const setRegisterAndSignUp = () => {
         saveUserToDatabase(user, userEmailEl.value);
         resetFields();
         dialogLoginEl.close();
-      },
+      }
     );
   });
 
@@ -166,7 +166,7 @@ export const setRegisterAndSignUp = () => {
     signInWithEmailAndPassword(auth, userEmailEl.value, userPasswordEl.value)
       .then(userCredential => {
         const user = userCredential.user;
-        alert(user.email + ' login successfuly!');
+        Notiflix.Notify.success(user.email + ' login successfuly!');
         resetFields();
         reloadHeader();
         dialogLoginEl.close();
@@ -180,7 +180,7 @@ export const setRegisterAndSignUp = () => {
   logoutBtn.addEventListener('click', event => {
     //event.preventDefault();
     signOut(auth).then(() => {
-      alert('log out successful!');
+      Notiflix.Notify.success('Log out successful!');
       reloadHeader();
     });
   });
@@ -189,7 +189,9 @@ export const setRegisterAndSignUp = () => {
 
   resetBtn.addEventListener('click', event => {
     //event.preventDefault();
-    sendPasswordResetEmail(auth, userEmailEl.value).then(() => alert('password reset email sent'));
+    sendPasswordResetEmail(auth, userEmailEl.value).then(() =>
+      Notiflix.Notify.success('Password reset email sent')
+    );
   });
 
   //Funkcja logowania przez Google
@@ -198,7 +200,7 @@ export const setRegisterAndSignUp = () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
       .then(result => {
-        alert('login successfuly!');
+        Notiflix.Notify.success('Login successfuly!');
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
         // The signed-in user info.
