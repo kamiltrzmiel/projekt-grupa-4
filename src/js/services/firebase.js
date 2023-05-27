@@ -6,6 +6,7 @@
 
 import { dialogBehavior } from './signInDialog';
 import { initializeApp } from 'firebase/app';
+import Notiflix from 'notiflix';
 import {
   getAuth,
   onAuthStateChanged,
