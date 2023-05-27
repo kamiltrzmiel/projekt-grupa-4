@@ -101,28 +101,27 @@ renderElement.addEventListener('click', e => {
 
       const trailersResponse = await fetchTrailerById(id);
       const trailerList = trailersResponse.data.results;
-      console.log(trailerList);
       const trailerBtn = document.querySelector('.trailer-btn');
       const trailerEl = document.getElementById('trailer-container');
+      const trailer = trailerList.find(
+        ({ official, type }) => type === 'Trailer' && official === true,
+      );
 
-      for (const trailer of trailerList) {
-        if (trailer.name !== 'Official Trailer') {
-          continue;
-        } else {
-          const player = `<iframe src="${defTrailerUrl}${trailer.key}" title="YouTube video player" class="player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
-          trailerBtn.classList.remove('hidden');
-          trailerBtn.addEventListener('click', () => {
-            trailerEl.innerHTML = player;
+      if (!trailer) {
+        return;
+      } else {
+        trailerBtn.classList.remove('hidden');
+        trailerBtn.addEventListener('click', () => {
+          trailerEl.innerHTML = `<iframe src="${defTrailerUrl}${trailer.key}?autoplay=1&mute=1" title="YouTube video player" class="player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allow="autoplay" allowfullscreen></iframe>`;
 
-            detailDialogEl.addEventListener('click', e => {
-              const playIcon = document.getElementById('play-icon');
+          detailDialogEl.addEventListener('click', e => {
+            const playIcon = document.getElementById('play-icon');
 
-              if (e.target !== playIcon) {
-                trailerEl.innerHTML = '';
-              }
-            });
+            if (e.target !== playIcon) {
+              trailerEl.innerHTML = '';
+            }
           });
-        }
+        });
       }
     } catch (error) {
       console.log(error);
