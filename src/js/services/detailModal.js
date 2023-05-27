@@ -78,23 +78,25 @@ renderElement.addEventListener('click', e => {
                 </div>
               </div>
             </div>`;
+
+      const closeDetailModal = () => {
+        body.style.overflow = 'auto';
+        dialog.close();
+        trailerEl.innerHTML = '';
+      };
+
       const closeDetailModalBtn = document.getElementById('hide-modal');
       closeDetailModalBtn.addEventListener('click', () => {
-        detailDialogEl.close();
-        trailerEl.innerHTML = '';
-        body.style.overflow = 'auto';
+        closeDetailModal();
       });
       setModalButtons(item);
       detailDialogEl.addEventListener('click', e => {
         if (e.currentTarget === e.target) {
-          detailDialogEl.close();
-          trailerEl.innerHTML = '';
-          body.style.overflow = 'auto';
+          closeDetailModal();
         }
       });
       detailDialogEl.addEventListener('close', () => {
-        trailerEl.innerHTML = '';
-        body.style.overflow = 'auto';
+        closeDetailModal();
       });
 
       const trailersResponse = await fetchTrailerById(id);
