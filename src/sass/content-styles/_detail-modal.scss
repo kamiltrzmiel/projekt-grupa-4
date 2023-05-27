@@ -227,8 +227,8 @@
 #trailer-container {
   position: absolute;
   left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  top: 25%;
+  transform: translateX(-50%);
 }
 
 .player {
@@ -274,6 +274,12 @@
   }
   .trailer-btn {
     left: 85px;
+  }
+  #trailer-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
   .player {
     width: 560px;
