@@ -3,14 +3,16 @@ import { render } from './services/render';
 import { moviesLoading } from './services/loader';
 const searchInput = document.querySelector('.search__input');
 const searchButton = document.querySelector('.search__icon');
-const searchNotFound = document.querySelector('.search__not-found');
 
 // function do load movies by key-word
-const searchMovies = async query => {
+export const searchMovies = async query => {
   const renderElement = document.getElementById('posters');
+  const searchNotFound = document.querySelector('.search__not-found');
   try {
     const response = await api.fetchMoviesWithQuery(query);
+    console.log('Response:', response);
     const data = response.data.results;
+    console.log('Response Data:', response.data);
     if (data.length === 0) throw new Error();
     searchNotFound.style.visibility = 'hidden';
     render(data, renderElement, false);
