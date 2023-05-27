@@ -1,4 +1,4 @@
-import api from './api';
+import api, { fetchTrailerById, fetchTrendingMovies } from './api';
 import { API_KEY } from '../variables/constants';
 import axios from 'axios';
 const renderElement = document.getElementById('posters');
@@ -36,11 +36,12 @@ renderElement.addEventListener('click', e => {
         item.title
       }" />
                 
-                  <button class="trailer-btn">
+                  <button class="trailer-btn hidden">
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 32 32">
                       <path d="M16 0c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16zM16 29c-7.18 0-13-5.82-13-13s5.82-13 13-13 13 5.82 13 13-5.82 13-13 13zM12 9l12 7-12 7z"></path>
                     </svg>
                     </button>
+                    <div id="trailer-container"></div>
                 </div>
                 <div id="modal-text" class="modal__text">
                   <div class="modal__description">
@@ -87,17 +88,34 @@ renderElement.addEventListener('click', e => {
         }
       });
 
-      // wyszukiwanie trailera po id
-      const movieId = response.data.id;
-      const index = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/videos`, {
-        params: {
-          api_key: API_KEY,
-        },
-      });
+      // // wyszukiwanie trailera po id
+      // const movieId = response.data.id;
+      // const index = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/videos`, {
+      //   params: {
+      //     api_key: API_KEY,
+      //   },
+      // });
 
       // lista trailerów, z czego trzeba wybrać "Official Trailer"
-      const trailerList = index.data.results;
+      //   const trailerList = index.data.results;
+      //   console.log(trailerList);
+
+      const trailersResponse = await fetchTrailerById(id);
+      const trailerList = trailersResponse.data.results;
       console.log(trailerList);
+      const trailerBtn = document.querySelector('.trailer-btn');
+      const trailerEl = document.getElementById('trailer-container');
+      const player = `<iframe width="560" height="315" src="${defTrailerUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+
+      // if (trailerList.)
+
+      for (const trailer of trailerList) {
+        if (trailer.name !== 'Official Trailer') {
+          continue;
+        } else {
+          console.log(trailerList.indexOf(trailer));
+        }
+      }
     } catch (error) {
       console.log(error);
     }
