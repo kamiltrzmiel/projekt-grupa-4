@@ -1,9 +1,13 @@
 import api from './api';
+import { API_KEY } from '../variables/constants';
+import axios from 'axios';
 const renderElement = document.getElementById('posters');
 import { setModalButtons } from './setModalButtnos';
+const defTrailerUrl = 'https://www.youtube.com/embed/';
 
 renderElement.addEventListener('click', e => {
   const detailDialogEl = document.getElementById('modal-backdrop');
+  const trailerEl = document.querySelector('.trailer-btn');
 
   if (!e.target.parentNode.classList.contains('posters__box')) return;
 
@@ -14,22 +18,30 @@ renderElement.addEventListener('click', e => {
     try {
       const response = await api.fetchMovieById(id);
       const item = response.data;
-      // console.log(item);
       const genres = item.genres.map(movie => movie.name).join(', ');
 
       item.poster_path
         ? (item.poster_path = `https://image.tmdb.org/t/p/w500/${item.poster_path}`)
         : (item.poster_path = placeholder);
-      detailDialogEl.innerHTML = `<div class="container">
-      <div id="modal-wrapper" class="modal">
-      <button id="hide-modal" class="footer-modal__closeBtn">
-        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32">
-          <path d="M32 3.223l-3.223-3.223-12.777 12.777-12.777-12.777-3.223 3.223 12.777 12.777-12.777 12.777 3.223 3.223 12.777-12.777 12.777 12.777 3.223-3.223-12.777-12.777 12.777-12.777z"></path>
-        </svg>
-    </button>
-                <img id="modal-image" src="${item.poster_path}" class="modal__image" alt="${
+      detailDialogEl.innerHTML = `
+                <div class="container">
+                <div id="modal-wrapper" class="modal">
+                  <button id="hide-modal" class="footer-modal__closeBtn">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32">
+                     <path d="M32 3.223l-3.223-3.223-12.777 12.777-12.777-12.777-3.223 3.223 12.777 12.777-12.777 12.777 3.223 3.223 12.777-12.777 12.777 12.777 3.223-3.223-12.777-12.777 12.777-12.777z"></path>
+                    </svg>
+                  </button>
+                  <div class="trailer-btn-box">
+                    <img id="modal-image" src="${item.poster_path}" class="modal__image" alt="${
         item.title
       }" />
+                
+                  <button class="trailer-btn">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 32 32">
+                      <path d="M16 0c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16zM16 29c-7.18 0-13-5.82-13-13s5.82-13 13-13 13 5.82 13 13-5.82 13-13 13zM12 9l12 7-12 7z"></path>
+                    </svg>
+                    </button>
+                </div>
                 <div id="modal-text" class="modal__text">
                   <div class="modal__description">
                     <h3 class="modal__title">${item.title}</h3>
@@ -74,6 +86,18 @@ renderElement.addEventListener('click', e => {
           detailDialogEl.close();
         }
       });
+
+      // wyszukiwanie trailera po id
+      const movieId = response.data.id;
+      const index = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/videos`, {
+        params: {
+          api_key: API_KEY,
+        },
+      });
+
+      // lista trailerów, z czego trzeba wybrać "Official Trailer"
+      const trailerList = index.data.results;
+      console.log(trailerList);
     } catch (error) {
       console.log(error);
     }
