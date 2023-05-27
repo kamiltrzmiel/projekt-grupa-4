@@ -1,6 +1,6 @@
 /* -------------------------------- VARIABLES ------------------------------- */
 import { API_URL, IMG_URL, API_KEY, LANGUAGE } from './variables/constants';
-import { Pagination } from 'tui-pagination';
+
 /* --------------------------------- HEADER --------------------------------- */
 
 import keyword_searcher from './keyword_searcher';
