@@ -4,6 +4,7 @@ import axios from 'axios';
 const renderElement = document.getElementById('posters');
 import { setModalButtons } from './setModalButtnos';
 const defTrailerUrl = 'https://www.youtube.com/embed/';
+import playIcon from '../../assets/play-icon.png';
 
 renderElement.addEventListener('click', e => {
   const detailDialogEl = document.getElementById('modal-backdrop');
@@ -36,9 +37,7 @@ renderElement.addEventListener('click', e => {
       }" />
                 
                   <button class="trailer-btn hidden">
-                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="75" height="75" id="play-icon" viewBox="0 0 32 32">
-                      <path d="M16 0c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16zM16 29c-7.18 0-13-5.82-13-13s5.82-13 13-13 13 5.82 13 13-5.82 13-13 13zM12 9l12 7-12 7z"></path>
-                    </svg>
+                    <img src="${playIcon}" alt="player icon" id="play-icon" class="trailer-btn__icon" />
                     </button>
                 </div>
                 <div id="trailer-container"></div>
@@ -91,21 +90,8 @@ renderElement.addEventListener('click', e => {
         }
       });
 
-      // // wyszukiwanie trailera po id
-      // const movieId = response.data.id;
-      // const index = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/videos`, {
-      //   params: {
-      //     api_key: API_KEY,
-      //   },
-      // });
-
-      // lista trailerów, z czego trzeba wybrać "Official Trailer"
-      //   const trailerList = index.data.results;
-      //   console.log(trailerList);
-
       const trailersResponse = await fetchTrailerById(id);
       const trailerList = trailersResponse.data.results;
-      // console.log(trailerList);
       const trailerBtn = document.querySelector('.trailer-btn');
       const trailerEl = document.getElementById('trailer-container');
 
@@ -121,7 +107,7 @@ renderElement.addEventListener('click', e => {
             detailDialogEl.addEventListener('click', e => {
               const playIcon = document.getElementById('play-icon');
 
-              if (e.target.parentElement !== playIcon) {
+              if (e.target !== playIcon) {
                 trailerEl.innerHTML = '';
               }
             });

@@ -205,20 +205,22 @@
 
 .trailer-btn {
   background-color: transparent;
-  fill: var(--text-black);
-  fill-opacity: 0.8;
-  stroke: var(--modal-description-grey);
-  stroke-opacity: 0.2;
   position: absolute;
   left: 80px;
+  border-radius: 50%;
+  box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.59);
 
   &:hover,
   &:focus {
     cursor: pointer;
-    fill: var(--text-orange);
-    fill-opacity: 0.7;
-    stroke: var(--text-black);
-    stroke-opacity: 0.4;
+    filter: sepia(100%);
+    opacity: 0.9;
+  }
+
+  &__icon {
+    width: 5rem;
+    height: 5rem;
+    opacity: 0.7;
   }
 }
 
