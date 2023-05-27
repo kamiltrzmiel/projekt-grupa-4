@@ -7,7 +7,6 @@ const defTrailerUrl = 'https://www.youtube.com/embed/';
 
 renderElement.addEventListener('click', e => {
   const detailDialogEl = document.getElementById('modal-backdrop');
-  const trailerEl = document.querySelector('.trailer-btn');
 
   if (!e.target.parentNode.classList.contains('posters__box')) return;
 
@@ -37,7 +36,7 @@ renderElement.addEventListener('click', e => {
       }" />
                 
                   <button class="trailer-btn hidden">
-                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 32 32">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="75" height="75" id="play-icon" viewBox="0 0 32 32">
                       <path d="M16 0c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16zM16 29c-7.18 0-13-5.82-13-13s5.82-13 13-13 13 5.82 13 13-5.82 13-13 13zM12 9l12 7-12 7z"></path>
                     </svg>
                     </button>
@@ -80,11 +79,15 @@ renderElement.addEventListener('click', e => {
               </div>
             </div>`;
       const closeDetailModalBtn = document.getElementById('hide-modal');
-      closeDetailModalBtn.addEventListener('click', () => detailDialogEl.close());
+      closeDetailModalBtn.addEventListener('click', () => {
+        detailDialogEl.close();
+        trailerEl.innerHTML = '';
+      });
       setModalButtons(item);
       detailDialogEl.addEventListener('click', e => {
         if (e.currentTarget === e.target) {
           detailDialogEl.close();
+          trailerEl.innerHTML = '';
         }
       });
 
@@ -102,7 +105,7 @@ renderElement.addEventListener('click', e => {
 
       const trailersResponse = await fetchTrailerById(id);
       const trailerList = trailersResponse.data.results;
-      console.log(trailerList);
+      // console.log(trailerList);
       const trailerBtn = document.querySelector('.trailer-btn');
       const trailerEl = document.getElementById('trailer-container');
 
@@ -114,6 +117,14 @@ renderElement.addEventListener('click', e => {
           trailerBtn.classList.remove('hidden');
           trailerBtn.addEventListener('click', () => {
             trailerEl.innerHTML = player;
+
+            detailDialogEl.addEventListener('click', e => {
+              const playIcon = document.getElementById('play-icon');
+
+              if (e.target.parentElement !== playIcon) {
+                trailerEl.innerHTML = '';
+              }
+            });
           });
         }
       }
@@ -124,5 +135,3 @@ renderElement.addEventListener('click', e => {
   fetchMovieById(id);
   detailDialogEl.showModal();
 });
-
-//width="560" height="315"
