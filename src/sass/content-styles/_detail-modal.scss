@@ -35,6 +35,9 @@
   display: flex;
   flex-direction: column;
 
+  .trailer-btn-box {
+    margin-right: 0;
+  }
   &__btn {
     &--close {
       position: absolute;
@@ -261,6 +264,10 @@
   }
   .trailer-btn {
     left: 85px;
+  }
+
+  .trailer-btn-box {
+    margin-right: 36px !important;
   }
 }
 

@@ -7,7 +7,6 @@ const defTrailerUrl = 'https://www.youtube.com/embed/';
 
 renderElement.addEventListener('click', e => {
   const detailDialogEl = document.getElementById('modal-backdrop');
-  const trailerEl = document.querySelector('.trailer-btn');
 
   if (!e.target.parentNode.classList.contains('posters__box')) return;
 
@@ -35,7 +34,7 @@ renderElement.addEventListener('click', e => {
                     <img id="modal-image" src="${item.poster_path}" class="modal__image" alt="${
         item.title
       }" />
-                
+
                   <button class="trailer-btn">
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 32 32">
                       <path d="M16 0c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16zM16 29c-7.18 0-13-5.82-13-13s5.82-13 13-13 13 5.82 13 13-5.82 13-13 13zM12 9l12 7-12 7z"></path>
@@ -97,7 +96,25 @@ renderElement.addEventListener('click', e => {
 
       // lista trailerów, z czego trzeba wybrać "Official Trailer"
       const trailerList = index.data.results;
-      console.log(trailerList);
+      // console.log(trailerList);
+
+      // render movie trailer
+      const trailerEl = document.querySelector('.trailer-btn');
+      const trailer = trailerList.find(({ official, type}) => type === 'Trailer' && official === true)
+      trailerEl.addEventListener("click", () => {
+        const trailer = trailerList.find(({ official, type}) => type === 'Trailer' && official === true)
+        console.log(`https://www.youtube.com/embed?v=${trailer.key}`)
+        const trailerPlayer = document.querySelector(".trailer-btn-box")
+        trailerPlayer.innerHTML=`
+        <iframe
+        src="https://www.youtube.com/embed/${trailer.key}"
+        width="250"
+        frameborder="0"
+        allowfullscreen
+        class="modal__player"
+      ></iframe>`
+      })
+
     } catch (error) {
       console.log(error);
     }
