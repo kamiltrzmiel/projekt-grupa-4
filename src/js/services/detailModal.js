@@ -6,11 +6,14 @@ import playIcon from '../../assets/play-icon.png';
 
 renderElement.addEventListener('click', e => {
   const detailDialogEl = document.getElementById('modal-backdrop');
+  const body = document.querySelector('body');
 
   if (!e.target.parentNode.classList.contains('posters__box')) return;
 
   const id = e.target.parentNode.dataset.id;
   detailDialogEl.innerHTML = '';
+
+  body.style.overflow = 'hidden';
 
   const fetchMovieById = async id => {
     try {
@@ -79,13 +82,19 @@ renderElement.addEventListener('click', e => {
       closeDetailModalBtn.addEventListener('click', () => {
         detailDialogEl.close();
         trailerEl.innerHTML = '';
+        body.style.overflow = 'auto';
       });
       setModalButtons(item);
       detailDialogEl.addEventListener('click', e => {
         if (e.currentTarget === e.target) {
           detailDialogEl.close();
           trailerEl.innerHTML = '';
+          body.style.overflow = 'auto';
         }
+      });
+      detailDialogEl.addEventListener('close', () => {
+        trailerEl.innerHTML = '';
+        body.style.overflow = 'auto';
       });
 
       const trailersResponse = await fetchTrailerById(id);
