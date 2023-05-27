@@ -81,7 +81,7 @@ renderElement.addEventListener('click', e => {
 
       const closeDetailModal = () => {
         body.style.overflow = 'auto';
-        dialog.close();
+        detailDialogEl.close();
         trailerEl.innerHTML = '';
       };
 
@@ -101,6 +101,7 @@ renderElement.addEventListener('click', e => {
 
       const trailersResponse = await fetchTrailerById(id);
       const trailerList = trailersResponse.data.results;
+      console.log(trailerList);
       const trailerBtn = document.querySelector('.trailer-btn');
       const trailerEl = document.getElementById('trailer-container');
 
