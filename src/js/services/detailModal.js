@@ -41,8 +41,8 @@ renderElement.addEventListener('click', e => {
                       <path d="M16 0c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16zM16 29c-7.18 0-13-5.82-13-13s5.82-13 13-13 13 5.82 13 13-5.82 13-13 13zM12 9l12 7-12 7z"></path>
                     </svg>
                     </button>
-                    <div id="trailer-container"></div>
                 </div>
+                <div id="trailer-container"></div>
                 <div id="modal-text" class="modal__text">
                   <div class="modal__description">
                     <h3 class="modal__title">${item.title}</h3>
@@ -110,7 +110,7 @@ renderElement.addEventListener('click', e => {
         if (trailer.name !== 'Official Trailer') {
           continue;
         } else {
-          const player = `<iframe width="560" height="315" src="${defTrailerUrl}${trailer.key}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+          const player = `<iframe src="${defTrailerUrl}${trailer.key}" title="YouTube video player" class="player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
           trailerBtn.classList.remove('hidden');
           trailerBtn.addEventListener('click', () => {
             trailerEl.innerHTML = player;
@@ -124,3 +124,5 @@ renderElement.addEventListener('click', e => {
   fetchMovieById(id);
   detailDialogEl.showModal();
 });
+
+//width="560" height="315"
