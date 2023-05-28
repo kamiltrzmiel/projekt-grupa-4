@@ -3,3 +3,4 @@ import './sass/main.scss';
 import './js/keyword_searcher';
 import './js/services/pagination';
 import './js/services/detailModal';
+import './js/services/footer';
