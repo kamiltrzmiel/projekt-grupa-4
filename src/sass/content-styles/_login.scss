@@ -95,21 +95,6 @@
       font-weight: 500;
     }
   }
-  &__close-btn {
-    @extend .footer-modal__closeBtn;
-    border: 1px solid;
-    width: 1rem;
-    height: 1rem;
-    transition-duration: 250ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    &:hover,
-    &:focus {
-      cursor: pointer;
-      color: var(--text-white);
-      background-color: var(--text-orange);
-      border: 1px var(--text-orange);
-    }
-  }
 }
 
 @media (min-width: 768px) {
