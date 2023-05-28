@@ -12,6 +12,11 @@
   &__link {
     color: var(--text-footer);
     text-decoration: underline;
+
+    &:hover,
+    &:focus {
+      color: var(--text-orange);
+    }
   }
 
   &__icon {
