@@ -15,7 +15,6 @@ showDialogBtn.addEventListener('click', () => {
 });
 
 const closeModal = () => {
-  gi;
   body.style.overflow = 'auto';
   dialog.close();
 };
