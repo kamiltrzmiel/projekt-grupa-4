@@ -11,11 +11,12 @@ export const fetchTrendingMovies = async pageNumber => {
   return response;
 };
 
-export const fetchMoviesWithQuery = async searchQuery => {
+export const fetchMoviesWithQuery = async (searchQuery, page) => {
   const response = await axios.get('https://api.themoviedb.org/3/search/movie', {
     params: {
       api_key: API_KEY,
       query: searchQuery,
+      page: page,
     },
   });
   return response;

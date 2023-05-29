@@ -1,9 +1,5 @@
-/* -------------------------------- VARIABLES ------------------------------- */
-import { API_URL, IMG_URL, API_KEY, LANGUAGE } from './variables/constants';
-import { Pagination } from 'tui-pagination';
 /* --------------------------------- HEADER --------------------------------- */
 
-import keyword_searcher from './keyword_searcher';
 import { moviesLoading } from './services/loader';
 import { reloadHeader, setRegisterAndSignUp } from './services/firebase';
 
@@ -44,10 +40,13 @@ hideModalBtn.addEventListener('click', toggleModal);
 import api from './services/api';
 import { render } from './services/render';
 const renderElement = document.getElementById('posters');
+import { createPagination } from './services/pagination';
 
 const fetchTrendingMovies = async page => {
   try {
     const response = await api.fetchTrendingMovies(page);
+    const totalResults = response.data.total_results;
+    createPagination(totalResults, page, fetchTrendingMovies);
     const data = response.data.results;
     render(data, renderElement, false);
   } catch (error) {
@@ -59,3 +58,33 @@ moviesLoading();
 setTimeout(() => {
   fetchTrendingMovies(1);
 }, 250);
+
+import { searchMovies } from './services/keyword_searcher';
+const searchInput = document.querySelector('.search__input');
+const searchButton = document.querySelector('.search__icon');
+
+// Do the search movies after clicking the search button
+searchButton.addEventListener('click', event => {
+  event.preventDefault();
+  const querySearch = searchInput.value.trim();
+  if (querySearch) {
+    moviesLoading();
+    setTimeout(() => {
+      searchMovies({ query: querySearch });
+    }, 400);
+  }
+});
+
+// Do the search movies after pressing enter key
+searchInput.addEventListener('keypress', event => {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    const querySearch = searchInput.value.trim();
+    if (querySearch) {
+      moviesLoading();
+      setTimeout(() => {
+        searchMovies({ query: querySearch });
+      }, 400);
+    }
+  }
+});
