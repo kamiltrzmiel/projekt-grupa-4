@@ -5,6 +5,7 @@ import { moviesLoading } from './loader';
 const containerEl = document.getElementById('posters');
 const watchedBtn = document.getElementById('user-watched-btn');
 const queuedBtn = document.getElementById('user-queue-btn');
+const postersEl = document.getElementById('posters');
 
 const getMoviesObject = async () => {
   const user = await getUser();
@@ -40,7 +41,9 @@ export const initializeLibrary = async type => {
   moviesLoading();
   const data = await getMoviesArray(type);
   if (data.length === 0) {
-    alert(`There are no movies in your ${type} list!`);
+    //alert(`There are no movies in your ${type} list!`);
+    postersEl.innerHTML = `<div class="posters__error">There are no movies in your ${type} list! <br><br>
+    If you wish to add movie to your library please go back to home page, <br> click on a movie and add it to your watched or queued list ;) </div>`;
     return;
   }
   render(data, containerEl, true);

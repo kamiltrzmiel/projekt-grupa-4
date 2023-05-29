@@ -157,7 +157,7 @@ export const setRegisterAndSignUp = () => {
         saveUserToDatabase(user, userEmailEl.value);
         resetFields();
         dialogLoginEl.close();
-      }
+      },
     );
   });
 
@@ -173,7 +173,7 @@ export const setRegisterAndSignUp = () => {
         dialogLoginEl.close();
       })
       .catch(error => {
-        alert(error.message);
+        console.log(error.message);
       });
   });
 
@@ -191,7 +191,7 @@ export const setRegisterAndSignUp = () => {
   resetBtn.addEventListener('click', event => {
     //event.preventDefault();
     sendPasswordResetEmail(auth, userEmailEl.value).then(() =>
-      Notiflix.Notify.success('Password reset email sent')
+      Notiflix.Notify.success('Password reset email sent'),
     );
   });
 
