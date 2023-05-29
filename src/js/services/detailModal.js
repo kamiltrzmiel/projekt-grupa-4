@@ -3,6 +3,7 @@ const renderElement = document.getElementById('posters');
 import { setModalButtons } from './setModalButtnos';
 const defTrailerUrl = 'https://www.youtube.com/embed/';
 import playIcon from '../../assets/play-icon.png';
+import placeholder from '../../assets/placeholder.jpg';
 
 renderElement.addEventListener('click', e => {
   const detailDialogEl = document.getElementById('modal-backdrop');
