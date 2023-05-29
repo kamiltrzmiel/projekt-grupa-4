@@ -206,7 +206,8 @@
 .trailer-btn {
   background-color: transparent;
   position: absolute;
-  left: 80px;
+  left: 50%;
+  transform: translateX(-50%);
   border-radius: 50%;
   box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.59);
 
@@ -239,8 +240,8 @@
 
 @media (min-width: 768px) {
   .modal {
-    padding: 2.5rem 4.5rem 2.5rem 2.25rem;
-    flex-direction: row;
+    padding: 2.5rem;
+    //flex-direction: row;
     max-width: 704px;
     top: 50%;
     left: 50%;
@@ -248,14 +249,13 @@
     transform: translate(-50%, -50%);
 
     &__image {
-      max-height: 373px;
-      max-width: 264px;
-      margin-right: 4.25rem;
+      min-width: 100%;
     }
 
     &__title {
-      margin-top: 0;
-      margin-bottom: 1.25rem;
+      margin-block: 1.25rem;
+      text-align: center;
+      width: 100%;
     }
 
     &__text {
@@ -272,9 +272,6 @@
       }
     }
   }
-  .trailer-btn {
-    left: 85px;
-  }
   #trailer-container {
     position: absolute;
     left: 50%;
@@ -282,8 +279,7 @@
     transform: translate(-50%, -50%);
   }
   .player {
-    width: 560px;
-    height: 315px;
+    width: 100%;
   }
 }
 
@@ -296,17 +292,25 @@
     padding: 2.5rem 0.75rem 2.5rem 0.75rem;
 
     &__image {
-      max-width: 375px;
-      max-height: 475px;
-      margin-right: 2rem;
     }
 
     &__text {
-      width: 391px;
+      display: flex;
+      justify-content: center;
+      flex: 1 1 0;
+      width: 100%;
+      &__box {
+        width: 100%;
+      }
+    }
+    &__article {
+      margin-top: 0;
     }
 
     &__buttons {
-      justify-content: space-around;
+      justify-content: center;
+      margin-bottom: 0;
+      gap: 1rem;
     }
 
     &__title {
@@ -325,7 +329,7 @@
       }
     }
   }
-  .trailer-btn {
-    left: 120px;
+  .player {
+    height: 440px;
   }
 }
