@@ -1,25 +1,41 @@
 import { fetchMoviesWithQuery } from './api';
 import { render } from './render';
-const searchNotFound = document.querySelector('.search__not-found');
-import { createPagination } from './pagination';
-const searchInput = document.querySelector('.search__input');
 
-// function do load movies by key-word
+let currentPage = 1;
+const perPage = 20;
+let currentQuery = '';
+
+const endOfResults = document.getElementById('end-of-results');
+let totalResults = 0;
+let fetching = false;
+
+const renderElement = document.getElementById('posters');
+
+const updateUI = (movies, totalResults) => {
+  render(movies, renderElement, true);
+
+  if (renderElement.children.length >= totalResults) {
+    const message = document.createElement('p');
+    message.textContent = "We're sorry, but you've reached the end of search results.";
+    endOfResults.appendChild(message);
+  }
+};
+
 export const searchMovies = async ({ query, page = 1 }) => {
-  const renderElement = document.getElementById('posters');
+  if (query === '') {
+    return;
+  }
+  if (query !== currentQuery) {
+    currentPage = 1;
+    currentQuery = query;
+    renderElement.innerHTML = '';
+  }
   try {
     const response = await fetchMoviesWithQuery(query, page);
+    const movies = response.data.results;
     const totalResults = response.data.total_results;
-    const currentPage = response.data.page;
-    console.log(response);
-    createPagination(totalResults, currentPage, searchMovies, query);
-    const data = response.data.results;
-    if (data.length === 0) throw new Error();
-    searchNotFound.style.visibility = 'hidden';
-    render(data, renderElement, false);
-    searchInput.value = '';
+    updateUI(movies, totalResults);
   } catch (error) {
     console.error('Error searching movies:', error);
-    searchNotFound.style.visibility = 'visible';
   }
 };
