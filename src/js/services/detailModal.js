@@ -4,7 +4,7 @@ import { setModalButtons } from './setModalButtnos';
 const defTrailerUrl = 'https://www.youtube.com/embed/';
 import playIcon from '../../assets/play-icon.png';
 import placeholder from '../../assets/video-placeholder.jpg';
-import { getSingleMovie } from './loadMovies';
+import { getSingleMovieFromUserDatabase } from './loadMovies';
 
 renderElement.addEventListener('click', e => {
   const detailDialogEl = document.getElementById('modal-backdrop');
@@ -21,7 +21,7 @@ renderElement.addEventListener('click', e => {
     try {
       const response = await api.fetchMovieById(id);
       const movie = await getSingleMovieFromUserDatabase(id);
-      console.log(movie);
+      console.log(movie.type);
       const item = response.data;
       const genres = item.genres.map(movie => movie.name).join(', ');
 

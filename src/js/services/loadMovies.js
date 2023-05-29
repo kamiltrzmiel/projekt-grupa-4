@@ -36,7 +36,7 @@ const getMoviesArray = async () => {
   return updatedMovieArray;
 };
 
-export const getSingleMovie = async id => {
+export const getSingleMovieFromUserDatabase = async id => {
   const object = await getMoviesArray();
   const movie = object.find(movie => movie.id === +id);
   return movie;
@@ -60,17 +60,19 @@ export const initializeLibrary = async type => {
   render(data, containerEl, true);
 };
 
-watchedBtn.addEventListener('click', () => {
-  initializeLibrary('watched');
-  watchedBtn.style.backgroundColor = 'var(--text-orange)';
-  watchedBtn.style.borderColor = 'var(--text-orange)';
-  queuedBtn.style.backgroundColor = 'transparent';
-  queuedBtn.style.borderColor = 'var(--text-white)';
-});
-queuedBtn.addEventListener('click', () => {
-  initializeLibrary('queued');
-  watchedBtn.style.backgroundColor = 'transparent';
-  watchedBtn.style.borderColor = 'var(--text-white)';
-  queuedBtn.style.backgroundColor = 'var(--text-orange)';
-  queuedBtn.style.borderColor = 'var(--text-orange)';
-});
+export const initializeButtons = () => {
+  watchedBtn.addEventListener('click', () => {
+    initializeLibrary('watched');
+    watchedBtn.style.backgroundColor = 'var(--text-orange)';
+    watchedBtn.style.borderColor = 'var(--text-orange)';
+    queuedBtn.style.backgroundColor = 'transparent';
+    queuedBtn.style.borderColor = 'var(--text-white)';
+  });
+  queuedBtn.addEventListener('click', () => {
+    initializeLibrary('queued');
+    watchedBtn.style.backgroundColor = 'transparent';
+    watchedBtn.style.borderColor = 'var(--text-white)';
+    queuedBtn.style.backgroundColor = 'var(--text-orange)';
+    queuedBtn.style.borderColor = 'var(--text-orange)';
+  });
+};

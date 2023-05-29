@@ -12,4 +12,3 @@ const fetchTrailerById = async id => {
     console.log(error);
   }
 };
-fetchTrailerById(id);
