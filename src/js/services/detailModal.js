@@ -115,7 +115,7 @@ renderElement.addEventListener('click', e => {
       } else {
         trailerBtn.classList.remove('hidden');
         trailerBtn.addEventListener('click', () => {
-          trailerBox.innerHTML = `<iframe src="${defTrailerUrl}${trailer.key}?autoplay=1&mute=1" title="YouTube video player" class="player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allow="autoplay" allowfullscreen></iframe>`;
+          trailerBox.innerHTML = `<iframe src="${defTrailerUrl}${trailer.key}?autoplay=1&mute=1" title="YouTube video player" class="player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allow="autoplay" allowfullscreen></iframe>`;
 
           detailDialogEl.addEventListener('click', e => {
             const playIcon = document.getElementById('play-icon');
