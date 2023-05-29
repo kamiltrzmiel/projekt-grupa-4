@@ -23,8 +23,8 @@ renderElement.addEventListener('click', e => {
       const genres = item.genres.map(movie => movie.name).join(', ');
 
       item.backdrop_path
-        ? (item.poster_path = `https://image.tmdb.org/t/p/w500/${item.backdrop_path}`)
-        : (item.poster_path = placeholder);
+        ? (item.backdrop_path = `https://image.tmdb.org/t/p/w500/${item.backdrop_path}`)
+        : (item.backdrop_path = placeholder);
       detailDialogEl.innerHTML = `
                 <div class="container">
                 <div id="modal-wrapper" class="modal">
@@ -34,7 +34,7 @@ renderElement.addEventListener('click', e => {
                     </svg>
                   </button>
                   <div class="trailer-btn-box">
-                    <img id="modal-image" src="${item.poster_path}" class="modal__image" alt="${
+                    <img id="modal-image" src="${item.backdrop_path}" class="modal__image" alt="${
         item.title
       }" />
                 
