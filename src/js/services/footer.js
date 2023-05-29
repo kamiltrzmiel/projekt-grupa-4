@@ -21,3 +21,8 @@ const closeModal = () => {
 
 hideDialogBtn.addEventListener('click', closeModal);
 dialog.addEventListener('close', closeModal);
+dialog.addEventListener('click', e => {
+  if (e.currentTarget === e.target) {
+    closeModal();
+  }
+});
