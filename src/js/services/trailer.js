@@ -1,15 +1,10 @@
-import api from './api';
+/* --------------------------------- MOVIE-MODAL --------------------------------- */
 
-const defTrailerUrl = 'https://www.youtube.com/embed/';
-const trailerEl = document.querySelector('.trailer-btn');
+const hideModalBtn = document.getElementById('hide-modal');
+const movieModal = document.getElementById('modal-backdrop');
 
-const fetchTrailerById = async id => {
-  try {
-    const response = await api.fetchTrailerById(id);
-    const item = response.data;
-    //...//
-  } catch (error) {
-    console.log(error);
-  }
+const toggleModal = () => {
+  movieModal.classList.toggle('hidden');
 };
-fetchTrailerById(id);
+
+hideModalBtn.addEventListener('click', toggleModal);
