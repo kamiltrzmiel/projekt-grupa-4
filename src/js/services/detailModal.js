@@ -1,18 +1,19 @@
-import api from './api';
-import { API_KEY } from '../variables/constants';
-import axios from 'axios';
+import api, { fetchTrailerById } from './api';
 const renderElement = document.getElementById('posters');
 import { setModalButtons } from './setModalButtnos';
 const defTrailerUrl = 'https://www.youtube.com/embed/';
+import playIcon from '../../assets/play-icon.png';
 
 renderElement.addEventListener('click', e => {
   const detailDialogEl = document.getElementById('modal-backdrop');
-  const trailerEl = document.querySelector('.trailer-btn');
+  const body = document.querySelector('body');
 
   if (!e.target.parentNode.classList.contains('posters__box')) return;
 
   const id = e.target.parentNode.dataset.id;
   detailDialogEl.innerHTML = '';
+
+  body.style.overflow = 'hidden';
 
   const fetchMovieById = async id => {
     try {
@@ -36,12 +37,11 @@ renderElement.addEventListener('click', e => {
         item.title
       }" />
                 
-                  <button class="trailer-btn">
-                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 32 32">
-                      <path d="M16 0c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16zM16 29c-7.18 0-13-5.82-13-13s5.82-13 13-13 13 5.82 13 13-5.82 13-13 13zM12 9l12 7-12 7z"></path>
-                    </svg>
+                  <button class="trailer-btn hidden">
+                    <img src="${playIcon}" alt="player icon" id="play-icon" class="trailer-btn__icon" />
                     </button>
                 </div>
+                <div id="trailer-container"></div>
                 <div id="modal-text" class="modal__text">
                   <div class="modal__description">
                     <h3 class="modal__title">${item.title}</h3>
@@ -78,26 +78,51 @@ renderElement.addEventListener('click', e => {
                 </div>
               </div>
             </div>`;
+
+      const closeDetailModal = () => {
+        body.style.overflow = 'auto';
+        detailDialogEl.close();
+        trailerEl.innerHTML = '';
+      };
+
       const closeDetailModalBtn = document.getElementById('hide-modal');
-      closeDetailModalBtn.addEventListener('click', () => detailDialogEl.close());
+      closeDetailModalBtn.addEventListener('click', () => {
+        closeDetailModal();
+      });
       setModalButtons(item);
       detailDialogEl.addEventListener('click', e => {
         if (e.currentTarget === e.target) {
-          detailDialogEl.close();
+          closeDetailModal();
         }
       });
-
-      // wyszukiwanie trailera po id
-      const movieId = response.data.id;
-      const index = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/videos`, {
-        params: {
-          api_key: API_KEY,
-        },
+      detailDialogEl.addEventListener('close', () => {
+        closeDetailModal();
       });
 
-      // lista trailerów, z czego trzeba wybrać "Official Trailer"
-      const trailerList = index.data.results;
-      console.log(trailerList);
+      const trailersResponse = await fetchTrailerById(id);
+      const trailerList = trailersResponse.data.results;
+      const trailerBtn = document.querySelector('.trailer-btn');
+      const trailerEl = document.getElementById('trailer-container');
+      const trailer = trailerList.find(
+        ({ official, type }) => type === 'Trailer' && official === true,
+      );
+
+      if (!trailer) {
+        return;
+      } else {
+        trailerBtn.classList.remove('hidden');
+        trailerBtn.addEventListener('click', () => {
+          trailerEl.innerHTML = `<iframe src="${defTrailerUrl}${trailer.key}?autoplay=1&mute=1" title="YouTube video player" class="player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allow="autoplay" allowfullscreen></iframe>`;
+
+          detailDialogEl.addEventListener('click', e => {
+            const playIcon = document.getElementById('play-icon');
+
+            if (e.target !== playIcon) {
+              trailerEl.innerHTML = '';
+            }
+          });
+        });
+      }
     } catch (error) {
       console.log(error);
     }

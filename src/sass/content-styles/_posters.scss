@@ -8,17 +8,23 @@
   flex-direction: column;
   width: 100%;
   min-height: 100vh;
+
   &__box {
     font-size: 0.75rem;
     line-height: 1rem;
     font-weight: 500;
     flex-basis: calc((100% - 2 * 1rem) / 3);
+    border-radius: 5px;
     &:hover {
       cursor: pointer;
+      transform: scale(1.01);
+      box-shadow: 0px 1px 18px 0px rgba(0, 0, 0, 0.59);
     }
     &:focus {
       outline: 3px solid #ff6b08;
-      border-radius: 5px;
+    }
+    & > figcaption {
+      padding: 0 10px 10px;
     }
   }
   &__img {
