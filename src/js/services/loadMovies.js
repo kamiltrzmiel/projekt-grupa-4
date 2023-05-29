@@ -17,7 +17,7 @@ const convertGenresToArray = string => {
   return string.split(',').map(Number);
 };
 
-const getMoviesArray = async type => {
+const getMoviesArray = async () => {
   const object = await getMoviesObject();
   const movieArray = Object.values(object);
   const updatedMovieArray = movieArray.map(movie => {
@@ -33,13 +33,24 @@ const getMoviesArray = async type => {
       };
     }
   });
-  const filteredMovieArray = updatedMovieArray.filter(movie => movie.type === type);
+  return updatedMovieArray;
+};
+
+export const getSingleMovie = async id => {
+  const object = await getMoviesArray();
+  const movie = object.find(movie => movie.id === +id);
+  return movie;
+};
+
+const filterMovieArray = async type => {
+  const movies = await getMoviesArray();
+  const filteredMovieArray = movies.filter(movie => movie.type === type);
   return filteredMovieArray;
 };
 
 export const initializeLibrary = async type => {
   moviesLoading();
-  const data = await getMoviesArray(type);
+  const data = await filterMovieArray(type);
   if (data.length === 0) {
     //alert(`There are no movies in your ${type} list!`);
     postersEl.innerHTML = `<div class="posters__error">There are no movies in your ${type} list! <br><br>
