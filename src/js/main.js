@@ -18,15 +18,14 @@ hideModalBtn.addEventListener('click', toggleModal);
 import api from './services/api';
 import { render } from './services/render';
 const renderElement = document.getElementById('posters');
-import { createPagination } from './services/pagination';
+import { infiniteScroll } from './services/infiniteScroll';
 
 const fetchTrendingMovies = async page => {
   try {
     const response = await api.fetchTrendingMovies(page);
-    const totalResults = response.data.total_results;
-    createPagination(totalResults, page, fetchTrendingMovies);
     const data = response.data.results;
     render(data, renderElement, false);
+    infiniteScroll(fetchTrendingMovies);
   } catch (error) {
     console.log(error);
   }
@@ -47,9 +46,8 @@ searchButton.addEventListener('click', event => {
   const querySearch = searchInput.value.trim();
   if (querySearch) {
     moviesLoading();
-    setTimeout(() => {
-      searchMovies({ query: querySearch });
-    }, 400);
+    renderElement.innerHTML = '';
+    searchMovies({ query: querySearch });
   }
 });
 
@@ -60,9 +58,8 @@ searchInput.addEventListener('keypress', event => {
     const querySearch = searchInput.value.trim();
     if (querySearch) {
       moviesLoading();
-      setTimeout(() => {
-        searchMovies({ query: querySearch });
-      }, 400);
+      renderElement.innerHTML = '';
+      searchMovies({ query: querySearch });
     }
   }
 });

@@ -1,27 +1,32 @@
-import Pagination from 'tui-pagination';
-const TUI_VISIBLE_PAGES = 5;
 const ITEMS_PER_PAGE = 20;
 
 export function createPagination(totalItems, page, func, query) {
-  const options = {
-    itemsPerPage: ITEMS_PER_PAGE,
-    totalItems: totalItems,
-    page: page,
-    visiblePages: TUI_VISIBLE_PAGES,
-  };
+  const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
 
   const container = document.getElementById('pagination');
-  const pagination = new Pagination(container, options);
+  container.innerHTML = '';
 
-  pagination.on('afterMove', function (eventData) {
-    const currentPage = eventData.page;
-    if (func.name === 'fetchTrendingMovies') {
-      // Perform actions based on the current page
-      console.log(`Current page: ${currentPage}`);
-      func(currentPage);
-    }
-    if (func.name === 'searchMovies') {
-      func({ query: query, page: currentPage });
-    }
-  });
+  for (let i = 1; i <= totalPages; i++) {
+    const pageButton = document.createElement('button');
+    pageButton.textContent = i;
+    pageButton.addEventListener('click', () => {
+      if (func === fetchTrendingMovies) {
+        fetchTrendingMovies(i);
+      } else if (func === searchMovies) {
+        searchMovies({ query: query, page: i });
+      }
+      W;
+    });
+    container.appendChild(pageButton);
+  }
+}
+export function getNextPage(func, query) {
+  const currentPage = parseInt(document.querySelector('.pagination-active').textContent);
+  const nextPage = currentPage + 1;
+
+  if (func === fetchTrendingMovies) {
+    fetchTrendingMovies(nextPage);
+  } else if (func === searchMovies) {
+    searchMovies({ query: query, page: nextPage });
+  }
 }

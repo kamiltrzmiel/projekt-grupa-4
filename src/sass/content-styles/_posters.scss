@@ -19,6 +19,7 @@
       cursor: pointer;
       transform: scale(1.01);
       box-shadow: 0px 1px 18px 0px rgba(0, 0, 0, 0.59);
+      z-index: 1;
     }
     &:focus {
       outline: 3px solid #ff6b08;
