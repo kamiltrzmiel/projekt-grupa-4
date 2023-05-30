@@ -1,4 +1,5 @@
 import './js/main';
+
 import './sass/main.scss';
 import './js/services/pagination';
 import './js/services/footer';
