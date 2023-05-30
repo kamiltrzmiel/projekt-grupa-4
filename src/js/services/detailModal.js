@@ -21,7 +21,7 @@ renderElement.addEventListener('click', e => {
     try {
       const response = await api.fetchMovieById(id);
       const movie = await getSingleMovieFromUserDatabase(id);
-      console.log(movie.type);
+      const type = movie.type;
       const item = response.data;
       const genres = item.genres.map(movie => movie.name).join(', ');
 
