@@ -44,7 +44,7 @@ export const setModalButtons = (data, type) => {
     queueBtn.addEventListener('click', async () => await deleteMovie(data));
   }
   if (!type) {
-    watchBtn.addEventListener('click', async () => Notiflix.Notify.warning('Please first login'));
-    queueBtn.addEventListener('click', async () => Notiflix.Notify.warning('Please first login'));
+    watchBtn.addEventListener('click', async () => await saveMovie(data, 'watched'));
+    queueBtn.addEventListener('click', async () => await saveMovie(data, 'queued'));
   }
 };
