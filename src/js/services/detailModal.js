@@ -89,7 +89,7 @@ renderElement.addEventListener('click', e => {
         trailerEl.innerHTML = '';
       };
 
-      setModalButtons(item, (type = null));
+      setModalButtons(item);
       const user = await getUser();
       if (user) {
         const movie = await getSingleMovieFromUserDatabase(id);

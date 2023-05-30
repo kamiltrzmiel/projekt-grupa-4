@@ -28,7 +28,7 @@ const deleteMovie = async data => {
   }
 };
 
-export const setModalButtons = (data, type) => {
+export const setModalButtons = (data, type = null) => {
   const watchBtn = document.getElementById('modal-watched');
   const queueBtn = document.getElementById('modal-queue');
   if (type === 'watched') {
