@@ -17,7 +17,7 @@ const convertGenresToArray = string => {
   return string.split(',').map(Number);
 };
 
-const getMoviesArray = async type => {
+const getMoviesArray = async () => {
   const object = await getMoviesObject();
   const movieArray = Object.values(object);
   const updatedMovieArray = movieArray.map(movie => {
@@ -33,13 +33,42 @@ const getMoviesArray = async type => {
       };
     }
   });
-  const filteredMovieArray = updatedMovieArray.filter(movie => movie.type === type);
+  return updatedMovieArray;
+};
+
+export const getSingleMovieFromUserDatabase = async id => {
+  const object = await getMoviesArray();
+  const movie = object.find(movie => movie.id === +id);
+  return movie;
+};
+
+const filterMovieArray = async type => {
+  const movies = await getMoviesArray();
+  const filteredMovieArray = movies.filter(movie => movie.type === type);
   return filteredMovieArray;
+};
+
+const initializeButtons = () => {
+  watchedBtn.addEventListener('click', () => {
+    initializeLibrary('watched');
+    watchedBtn.style.backgroundColor = 'var(--text-orange)';
+    watchedBtn.style.borderColor = 'var(--text-orange)';
+    queuedBtn.style.backgroundColor = 'transparent';
+    queuedBtn.style.borderColor = 'var(--text-white)';
+  });
+  queuedBtn.addEventListener('click', () => {
+    initializeLibrary('queued');
+    watchedBtn.style.backgroundColor = 'transparent';
+    watchedBtn.style.borderColor = 'var(--text-white)';
+    queuedBtn.style.backgroundColor = 'var(--text-orange)';
+    queuedBtn.style.borderColor = 'var(--text-orange)';
+  });
 };
 
 export const initializeLibrary = async type => {
   moviesLoading();
-  const data = await getMoviesArray(type);
+  initializeButtons();
+  const data = await filterMovieArray(type);
   if (data.length === 0) {
     //alert(`There are no movies in your ${type} list!`);
     postersEl.innerHTML = `<div class="posters__error">There are no movies in your ${type} list! <br><br>
@@ -48,18 +77,3 @@ export const initializeLibrary = async type => {
   }
   render(data, containerEl, true);
 };
-
-watchedBtn.addEventListener('click', () => {
-  initializeLibrary('watched');
-  watchedBtn.style.backgroundColor = 'var(--text-orange)';
-  watchedBtn.style.borderColor = 'var(--text-orange)';
-  queuedBtn.style.backgroundColor = 'transparent';
-  queuedBtn.style.borderColor = 'var(--text-white)';
-});
-queuedBtn.addEventListener('click', () => {
-  initializeLibrary('queued');
-  watchedBtn.style.backgroundColor = 'transparent';
-  watchedBtn.style.borderColor = 'var(--text-white)';
-  queuedBtn.style.backgroundColor = 'var(--text-orange)';
-  queuedBtn.style.borderColor = 'var(--text-orange)';
-});
