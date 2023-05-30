@@ -8,10 +8,7 @@ const searchFormEl = document.getElementById('search-form');
 const logoIconEl = document.querySelector('.logo__icon');
 
 export const infiniteScroll = (func, query = '') => {
-  const perPage = 20;
   let currentPage = 1;
-  let currentQuery = '';
-  console.log(func.name);
 
   const loadMoreMovies = async () => {
     currentPage++;
@@ -27,7 +24,6 @@ export const infiniteScroll = (func, query = '') => {
   };
 
   const observeScrollToEnd = () => {
-    console.log(func.name);
     const windowHeight = window.innerHeight;
     const documentHeight = document.documentElement.scrollHeight;
     const scrollPosition = window.scrollY;
@@ -47,6 +43,5 @@ export const infiniteScroll = (func, query = '') => {
       loadMoreMovies(func);
     }
   };
-
   document.addEventListener('scroll', observeScrollToEnd);
 };

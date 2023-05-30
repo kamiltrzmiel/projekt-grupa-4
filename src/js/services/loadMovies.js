@@ -38,7 +38,9 @@ const getMoviesArray = async () => {
 
 export const getSingleMovieFromUserDatabase = async id => {
   const object = await getMoviesArray();
-  const movie = object.find(movie => movie.id === +id);
+  console.log(object);
+  const movie = object.find(movie => +movie.id === +id);
+  console.log(movie);
   return movie;
 };
 

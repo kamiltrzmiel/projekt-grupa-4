@@ -93,8 +93,10 @@ renderElement.addEventListener('click', e => {
       const user = await getUser();
       if (user) {
         const movie = await getSingleMovieFromUserDatabase(id);
-        const type = movie.type;
-        setModalButtons(item, type);
+        if (movie) {
+          const type = movie.type;
+          setModalButtons(item, type);
+        }
       }
 
       const closeDetailModalBtn = document.getElementById('hide-modal');
