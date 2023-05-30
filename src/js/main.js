@@ -2,7 +2,6 @@
 
 import { moviesLoading } from './services/loader';
 import { reloadHeader, setRegisterAndSignUp } from './services/firebase';
-
 /* --------------------------------- FOOTER --------------------------------- */
 /* --------------------------------- MOVIE-MODAL --------------------------------- */
 
@@ -67,3 +66,6 @@ searchInput.addEventListener('keypress', event => {
     }
   }
 });
+
+reloadHeader();
+setRegisterAndSignUp();
