@@ -52,3 +52,10 @@ export const dialogBehavior = () => {
   resetLinkEl.addEventListener('click', () => showReset());
   gobackEl.addEventListener('click', () => resetContainer());
 };
+
+dialogLoginEl.addEventListener('click', e => {
+  if (e.currentTarget === e.target) {
+    resetContainer();
+    dialogLoginEl.close();
+  }
+});

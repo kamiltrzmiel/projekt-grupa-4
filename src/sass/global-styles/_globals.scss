@@ -17,6 +17,19 @@
   box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+  &-track {
+    background: var(--bg-gray);
+  }
+  &-thumb {
+    background: var(--modal-description-grey);
+  }
+  &-thumb:hover {
+    background: var(--text-orange);
+  }
+}
+
 body {
   font-family: 'Roboto', sans-serif;
   width: 100%;
