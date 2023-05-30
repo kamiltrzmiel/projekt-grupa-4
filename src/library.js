@@ -5,7 +5,7 @@ import './js/services/trailer';
 import { initializeLibrary } from './js/services/loadMovies';
 import { moviesLoading } from './js/services/loader';
 import { reloadHeader, setRegisterAndSignUp } from './js/services/firebase';
-import { infiniteScroll } from './js/services/infiniteScroll';
+import { infiniteScrollLibrary } from './js/services/infiniteScroll';
 
 reloadHeader();
 setRegisterAndSignUp();
@@ -16,4 +16,4 @@ watchedBtn.style.borderColor = 'var(--text-orange)';
 
 moviesLoading();
 initializeLibrary('watched');
-infiniteScroll();
+infiniteScrollLibrary();
