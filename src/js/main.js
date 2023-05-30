@@ -18,47 +18,18 @@ hideModalBtn.addEventListener('click', toggleModal);
 import api from './services/api';
 import { render } from './services/render';
 const renderElement = document.getElementById('posters');
-import { createPagination, getNextPage } from './services/pagination';
-const perPage = 20;
-let currentPage = 1;
-let currentQuery = '';
+import { infiniteScroll } from './services/infiniteScroll';
 
 const fetchTrendingMovies = async page => {
   try {
     const response = await api.fetchTrendingMovies(page);
-    const totalResults = response.data.total_results;
-    createPagination(totalResults, page, fetchTrendingMovies);
     const data = response.data.results;
     render(data, renderElement, false);
+    infiniteScroll(fetchTrendingMovies);
   } catch (error) {
     console.log(error);
   }
 };
-
-const loadMoreMovies = async () => {
-  currentPage++;
-  try {
-    const response = await api.fetchTrendingMovies(currentPage);
-    const data = response.data.results;
-    render(data, renderElement, false);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-const observeScrollToEnd = () => {
-  const windowHeight = window.innerHeight;
-  const documentHeight = document.documentElement.scrollHeight;
-  const scrollPosition = window.scrollY;
-
-  if (scrollPosition + windowHeight >= documentHeight) {
-    if (renderElement.children.length < currentPage * perPage) {
-      loadMoreMovies();
-    }
-  }
-};
-
-window.addEventListener('scroll', observeScrollToEnd);
 
 moviesLoading();
 setTimeout(() => {
@@ -75,8 +46,6 @@ searchButton.addEventListener('click', event => {
   const querySearch = searchInput.value.trim();
   if (querySearch) {
     moviesLoading();
-    currentPage = 1;
-    currentQuery = querySearch;
     renderElement.innerHTML = '';
     searchMovies({ query: querySearch });
   }
@@ -89,8 +58,6 @@ searchInput.addEventListener('keypress', event => {
     const querySearch = searchInput.value.trim();
     if (querySearch) {
       moviesLoading();
-      currentPage = 1;
-      currentQuery = querySearch;
       renderElement.innerHTML = '';
       searchMovies({ query: querySearch });
     }

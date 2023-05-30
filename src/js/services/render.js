@@ -1,8 +1,8 @@
 import translateIdToGenre from './genre';
 import placeholder from '../../assets/placeholder.jpg';
 
-export function render(data, renderElement, renderVotes) {
-  renderElement.innerHTML = '';
+export function render(data, renderElement, renderVotes, pagination = false) {
+  if (!pagination) renderElement.innerHTML = '';
   const markup = data
     .map(({ id, title, poster_path, vote_average, release_date, genre_ids }) => {
       poster_path
