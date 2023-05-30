@@ -1,5 +1,7 @@
 import { getUser, saveMovieToDatabase, addMovie, removeMovieFromDatabase } from './firebase';
 import Notiflix from 'notiflix';
+import { initializeLibrary } from './loadMovies';
+import { closeDetailModal } from './detailModal';
 //tworzy nowy obiekt który ma w sobie dane i medoty związane z bazą danych
 
 //Funkcja pobiera z dokumentu przyciski dodania do obejrzanych i do kolejki oraz przypisuje im funkcje w eventListnerach
@@ -28,23 +30,40 @@ const deleteMovie = async data => {
   }
 };
 
+//TRZEBA WYRENDEROWAĆ OD NOWA RENDER
 export const setModalButtons = (data, type = null) => {
   const watchBtn = document.getElementById('modal-watched');
   const queueBtn = document.getElementById('modal-queue');
   if (type === 'watched') {
     watchBtn.classList.add('hidden');
     queueBtn.innerText = 'Move back to queue';
-    queueBtn.addEventListener('click', async () => await saveMovie(data, 'queued'));
-  }
-  if (type === 'queued') {
+    queueBtn.addEventListener('click', async () => {
+      await saveMovie(data, 'queued');
+      initializeLibrary('watched');
+      closeDetailModal();
+    });
+  } else if (type === 'queued') {
     watchBtn.innerText = 'Move to watched';
-    watchBtn.addEventListener('click', async () => await saveMovie(data, 'watched'));
+    watchBtn.addEventListener('click', async () => {
+      await saveMovie(data, 'watched');
+      initializeLibrary('queued');
+      closeDetailModal();
+    });
     queueBtn.innerText = 'Remove from queue';
     queueBtn.classList.add('modal__btn--queued--remove');
-    queueBtn.addEventListener('click', async () => await deleteMovie(data));
-  }
-  if (!type) {
-    watchBtn.addEventListener('click', async () => await saveMovie(data, 'watched'));
-    queueBtn.addEventListener('click', async () => await saveMovie(data, 'queued'));
+    queueBtn.addEventListener('click', async () => {
+      await deleteMovie(data);
+      initializeLibrary('queued');
+      closeDetailModal();
+    });
+  } else if (!type) {
+    watchBtn.addEventListener('click', async () => {
+      await saveMovie(data, 'watched');
+      closeDetailModal();
+    });
+    queueBtn.addEventListener('click', async () => {
+      await saveMovie(data, 'queued');
+      closeDetailModal();
+    });
   }
 };

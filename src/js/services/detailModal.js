@@ -7,10 +7,17 @@ import placeholder from '../../assets/video-placeholder.jpg';
 import { getSingleMovieFromUserDatabase } from './loadMovies';
 import { getUser } from './firebase';
 
-renderElement.addEventListener('click', e => {
-  const detailDialogEl = document.getElementById('modal-backdrop');
-  const body = document.querySelector('body');
+const detailDialogEl = document.getElementById('modal-backdrop');
+const body = document.querySelector('body');
+const trailerEl = document.getElementById('trailer-container');
 
+export const closeDetailModal = () => {
+  body.style.overflow = 'auto';
+  detailDialogEl.close();
+  trailerEl.innerHTML = '';
+};
+
+renderElement.addEventListener('click', e => {
   if (!e.target.parentNode.classList.contains('posters__box')) return;
 
   const id = e.target.parentNode.dataset.id;
@@ -83,13 +90,6 @@ renderElement.addEventListener('click', e => {
               </div>
             </div>`;
 
-      const closeDetailModal = () => {
-        body.style.overflow = 'auto';
-        detailDialogEl.close();
-        trailerEl.innerHTML = '';
-      };
-
-      setModalButtons(item);
       const user = await getUser();
       if (user) {
         const movie = await getSingleMovieFromUserDatabase(id);
@@ -97,6 +97,8 @@ renderElement.addEventListener('click', e => {
           const type = movie.type;
           setModalButtons(item, type);
         }
+      } else if (!user) {
+        setModalButtons(item);
       }
 
       const closeDetailModalBtn = document.getElementById('hide-modal');
@@ -117,7 +119,6 @@ renderElement.addEventListener('click', e => {
       const trailerList = trailersResponse.data.results;
       const trailerBtn = document.querySelector('.trailer-btn');
       const trailerBox = document.querySelector('.trailer-btn-box');
-      const trailerEl = document.getElementById('trailer-container');
       const trailer = trailerList.find(
         ({ official, type }) => type === 'Trailer' && official === true,
       );
