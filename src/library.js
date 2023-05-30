@@ -14,5 +14,4 @@ watchedBtn.style.backgroundColor = 'var(--text-orange)';
 watchedBtn.style.borderColor = 'var(--text-orange)';
 
 moviesLoading();
-initializeButtons();
 initializeLibrary('watched');

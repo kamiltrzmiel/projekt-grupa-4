@@ -5,6 +5,7 @@ const defTrailerUrl = 'https://www.youtube.com/embed/';
 import playIcon from '../../assets/play-icon.png';
 import placeholder from '../../assets/video-placeholder.jpg';
 import { getSingleMovieFromUserDatabase } from './loadMovies';
+import { getUser } from './firebase';
 
 renderElement.addEventListener('click', e => {
   const detailDialogEl = document.getElementById('modal-backdrop');
@@ -20,8 +21,6 @@ renderElement.addEventListener('click', e => {
   const fetchMovieById = async id => {
     try {
       const response = await api.fetchMovieById(id);
-      const movie = await getSingleMovieFromUserDatabase(id);
-      const type = movie.type;
       const item = response.data;
       const genres = item.genres.map(movie => movie.name).join(', ');
 
@@ -90,11 +89,19 @@ renderElement.addEventListener('click', e => {
         trailerEl.innerHTML = '';
       };
 
+      setModalButtons(item, (type = null));
+      const user = await getUser();
+      if (user) {
+        const movie = await getSingleMovieFromUserDatabase(id);
+        const type = movie.type;
+        setModalButtons(item, type);
+      }
+
       const closeDetailModalBtn = document.getElementById('hide-modal');
       closeDetailModalBtn.addEventListener('click', () => {
         closeDetailModal();
       });
-      setModalButtons(item);
+
       detailDialogEl.addEventListener('click', e => {
         if (e.currentTarget === e.target) {
           closeDetailModal();

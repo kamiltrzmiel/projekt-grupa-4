@@ -18,7 +18,7 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
 } from 'firebase/auth';
-import { getDatabase, ref, set, get } from 'firebase/database';
+import { getDatabase, ref, set, get, remove } from 'firebase/database';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -108,6 +108,18 @@ export const getMovies = async user => {
   }
 };
 
+export const removeMovieFromDatabase = (movie, user) => {
+  const userRef = ref(database, 'users/' + user.uid + `/movies/${movie.id}`);
+  remove(userRef)
+    .then(() => {
+      console.log('movie removed successfully');
+    })
+    .catch(error => {
+      console.error('Error saving user to database:', error);
+    });
+};
+
+//Funkcja zapisuje film do bazy danych.
 export const saveMovieToDatabase = (movie, user) => {
   const userRef = ref(database, 'users/' + user.uid + `/movies/${movie.id}`);
   const movieData = {

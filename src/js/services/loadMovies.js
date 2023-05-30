@@ -48,19 +48,7 @@ const filterMovieArray = async type => {
   return filteredMovieArray;
 };
 
-export const initializeLibrary = async type => {
-  moviesLoading();
-  const data = await filterMovieArray(type);
-  if (data.length === 0) {
-    //alert(`There are no movies in your ${type} list!`);
-    postersEl.innerHTML = `<div class="posters__error">There are no movies in your ${type} list! <br><br>
-    If you wish to add movie to your library please go back to home page, <br> click on a movie and add it to your watched or queued list ;) </div>`;
-    return;
-  }
-  render(data, containerEl, true);
-};
-
-export const initializeButtons = () => {
+const initializeButtons = () => {
   watchedBtn.addEventListener('click', () => {
     initializeLibrary('watched');
     watchedBtn.style.backgroundColor = 'var(--text-orange)';
@@ -75,4 +63,17 @@ export const initializeButtons = () => {
     queuedBtn.style.backgroundColor = 'var(--text-orange)';
     queuedBtn.style.borderColor = 'var(--text-orange)';
   });
+};
+
+export const initializeLibrary = async type => {
+  moviesLoading();
+  initializeButtons();
+  const data = await filterMovieArray(type);
+  if (data.length === 0) {
+    //alert(`There are no movies in your ${type} list!`);
+    postersEl.innerHTML = `<div class="posters__error">There are no movies in your ${type} list! <br><br>
+    If you wish to add movie to your library please go back to home page, <br> click on a movie and add it to your watched or queued list ;) </div>`;
+    return;
+  }
+  render(data, containerEl, true);
 };
