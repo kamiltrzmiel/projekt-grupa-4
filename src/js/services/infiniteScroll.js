@@ -21,11 +21,7 @@ const loadMoreMovies = async (instruction, query = '') => {
     if (instruction === 'searchMovies')
       response = await searchMovies({ query: query, page: currentPage });
     const data = response.data.results;
-<<<<<<< HEAD
     render(data, renderElement, false, true);
-=======
-    render(data, renderElement, false, (pagination = true));
->>>>>>> 97220237052df4ed2b0d3ff50bdc4db64ce9bb87
   } catch (error) {
     console.log(error);
   }
