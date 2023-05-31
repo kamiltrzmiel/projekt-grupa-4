@@ -84,32 +84,33 @@ const searchInput = document.querySelector('.search__input');
 const searchButton = document.querySelector('.search__icon');
 import { moviesLoading } from './loader';
 
-const showSearchResults = async (instruction, querySearch) => {
-  const scrollListener = scrollEvent(instruction);
-  document.addEventListener('scroll', scrollListener);
-  if (querySearch) {
-    const response = await searchMovies({ query: querySearch });
-    if (response) {
-      moviesLoading();
-      renderElement.innerHTML = '';
-      currentPage = 1;
-      const data = response.data.results;
-      render(data, renderElement, false, false);
-      document.addEventListener(
-        'scroll',
-        debounce(() => {
-          observeScrollToEnd('searchMovies', querySearch);
-        }, 300),
-      );
-      document.removeEventListener('scroll', scrollListener);
-    }
-  }
+const showSearchResults = async (instruction, querySearch, response) => {
+  moviesLoading();
+  renderElement.innerHTML = '';
+  currentPage = 1;
+  const data = response.data.results;
+  render(data, renderElement, false, false);
+  document.addEventListener(
+    'scroll',
+    debounce(() => {
+      observeScrollToEnd('searchMovies', querySearch);
+    }, 300),
+  );
 };
 export const searchListeners = instruction => {
+  const scrollListener = scrollEvent(instruction);
+  document.addEventListener('scroll', scrollListener);
+
   searchButton.addEventListener('click', async event => {
     event.preventDefault();
     const querySearch = searchInput.value.trim();
-    showSearchResults(instruction, querySearch);
+    if (querySearch) {
+      const response = await searchMovies({ query: querySearch });
+      if (response) {
+        showSearchResults(instruction, querySearch, response);
+        document.removeEventListener('scroll', scrollListener);
+      }
+    }
   });
 
   // Do the search movies after pressing enter key
@@ -117,7 +118,13 @@ export const searchListeners = instruction => {
     if (event.key === 'Enter') {
       event.preventDefault();
       const querySearch = searchInput.value.trim();
-      showSearchResults(instruction, querySearch);
+      if (querySearch) {
+        const response = await searchMovies({ query: querySearch });
+        if (response) {
+          showSearchResults(instruction, querySearch, response);
+          document.removeEventListener('scroll', scrollListener);
+        }
+      }
     }
   });
 };
