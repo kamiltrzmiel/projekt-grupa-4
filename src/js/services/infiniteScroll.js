@@ -20,8 +20,7 @@ const loadMoreMovies = async (event, query = '') => {
     if (event.name === 'searchMovies')
       response = await searchMovies({ query: query, page: currentPage });
     const data = response.data.results;
-    console.log(data);
-    render(data, renderElement, false, (pagination = true));
+    render(data, renderElement, false, true);
   } catch (error) {
     console.log(error);
   }
