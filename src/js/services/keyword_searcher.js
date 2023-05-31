@@ -11,10 +11,11 @@ export const searchMovies = async ({ query, page = 1 }) => {
     const movies = response.data.results;
     if (movies.length === 0) {
       searchErrorMessageEl.style.visibility = 'visible';
+      return false;
     } else {
       searchErrorMessageEl.style.visibility = 'hidden';
+      return response;
     }
-    return response;
   } catch (error) {
     console.error('Error searching movies:', error);
   }

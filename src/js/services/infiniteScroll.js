@@ -84,18 +84,15 @@ const searchInput = document.querySelector('.search__input');
 const searchButton = document.querySelector('.search__icon');
 import { moviesLoading } from './loader';
 
-export const searchListeners = instruction => {
+const showSearchResults = async (instruction, querySearch) => {
   const scrollListener = scrollEvent(instruction);
   document.addEventListener('scroll', scrollListener);
-
-  searchButton.addEventListener('click', async event => {
-    event.preventDefault();
-    const querySearch = searchInput.value.trim();
-    if (querySearch) {
+  if (querySearch) {
+    const response = await searchMovies({ query: querySearch });
+    if (response) {
       moviesLoading();
       renderElement.innerHTML = '';
       currentPage = 1;
-      const response = await searchMovies({ query: querySearch });
       const data = response.data.results;
       render(data, renderElement, false, false);
       document.addEventListener(
@@ -104,8 +101,15 @@ export const searchListeners = instruction => {
           observeScrollToEnd('searchMovies', querySearch);
         }, 300),
       );
+      document.removeEventListener('scroll', scrollListener);
     }
-    document.removeEventListener('scroll', scrollListener);
+  }
+};
+export const searchListeners = instruction => {
+  searchButton.addEventListener('click', async event => {
+    event.preventDefault();
+    const querySearch = searchInput.value.trim();
+    showSearchResults(instruction, querySearch);
   });
 
   // Do the search movies after pressing enter key
@@ -113,21 +117,7 @@ export const searchListeners = instruction => {
     if (event.key === 'Enter') {
       event.preventDefault();
       const querySearch = searchInput.value.trim();
-      if (querySearch) {
-        moviesLoading();
-        renderElement.innerHTML = '';
-        currentPage = 1;
-        const response = await searchMovies({ query: querySearch });
-        const data = response.data.results;
-        render(data, renderElement, false, false);
-        document.addEventListener(
-          'scroll',
-          debounce(() => {
-            observeScrollToEnd('searchMovies', querySearch);
-          }, 300),
-        );
-      }
+      showSearchResults(instruction, querySearch);
     }
-    document.removeEventListener('scroll', scrollListener);
   });
 };
