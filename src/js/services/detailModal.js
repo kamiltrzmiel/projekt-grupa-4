@@ -94,6 +94,8 @@ renderElement.addEventListener('click', e => {
         if (movie) {
           const type = movie.type;
           setModalButtons(item, type);
+        } else if (!movie) {
+          setModalButtons(item);
         }
       } else if (!user) {
         setModalButtons(item);
