@@ -111,9 +111,7 @@ export const getMovies = async user => {
 export const removeMovieFromDatabase = (movie, user) => {
   const userRef = ref(database, 'users/' + user.uid + `/movies/${movie.id}`);
   remove(userRef)
-    .then(() => {
-      console.log('movie removed successfully');
-    })
+    .then()
     .catch(error => {
       console.error('Error saving user to database:', error);
     });
@@ -132,9 +130,7 @@ export const saveMovieToDatabase = (movie, user) => {
     genres: movie.genre_ids.toString(),
   };
   set(userRef, movieData)
-    .then(() => {
-      console.log('movie saved');
-    })
+    .then()
     .catch(error => {
       console.error('Error saving user to database:', error);
     });
@@ -148,9 +144,7 @@ const saveUserToDatabase = (user, email) => {
     email: email,
   };
   set(userRef, user_data)
-    .then(() => {
-      console.log('Saved user to database');
-    })
+    .then()
     .catch(error => {
       console.error('Error saving user to database:', error);
     });
