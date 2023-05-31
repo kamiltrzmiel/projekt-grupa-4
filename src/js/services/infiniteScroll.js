@@ -21,7 +21,7 @@ const loadMoreMovies = async (instruction, query = '') => {
     if (instruction === 'searchMovies')
       response = await searchMovies({ query: query, page: currentPage });
     const data = response.data.results;
-    render(data, renderElement, false, (pagination = true));
+    render(data, renderElement, false, true);
   } catch (error) {
     console.log(error);
   }

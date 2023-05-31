@@ -30,6 +30,7 @@ const deleteMovie = async data => {
 
 //TRZEBA WYRENDEROWAĆ OD NOWA RENDER
 export const setModalButtons = (data, type = null) => {
+  const path = window.location.pathname;
   const watchBtn = document.getElementById('modal-watched');
   const queueBtn = document.getElementById('modal-queue');
   if (type === 'watched') {
@@ -37,21 +38,28 @@ export const setModalButtons = (data, type = null) => {
     queueBtn.innerText = 'Move back to queue';
     queueBtn.addEventListener('click', async () => {
       await saveMovie(data, 'queued');
-      initializeLibrary('watched');
+      if (path === '/library.html') {
+        initializeLibrary('watched');
+      }
+
       closeDetailModal();
     });
   } else if (type === 'queued') {
     watchBtn.innerText = 'Move to watched';
     watchBtn.addEventListener('click', async () => {
       await saveMovie(data, 'watched');
-      initializeLibrary('queued');
+      if (path === '/library.html') {
+        initializeLibrary('queued');
+      }
       closeDetailModal();
     });
     queueBtn.innerText = 'Remove from queue';
     queueBtn.classList.add('modal__btn--queued--remove');
     queueBtn.addEventListener('click', async () => {
       await deleteMovie(data);
-      initializeLibrary('queued');
+      if (path === '/library.html') {
+        initializeLibrary('queued');
+      }
       closeDetailModal();
     });
   } else if (!type) {
