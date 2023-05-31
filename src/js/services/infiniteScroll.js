@@ -12,22 +12,22 @@ const logoNameEl = document.querySelector('.logo');
 
 let currentPage = 1;
 
-const loadMoreMovies = async (event, query = '') => {
+const loadMoreMovies = async (instruction, query = '') => {
   currentPage++;
   try {
     let response = {};
-    if (event.name === 'fetchTrendingMovies') response = await api.fetchTrendingMovies(currentPage);
-    if (event.name === 'searchMovies')
+    if (instruction.name === 'fetchTrendingMovies')
+      response = await api.fetchTrendingMovies(currentPage);
+    if (instruction.name === 'searchMovies')
       response = await searchMovies({ query: query, page: currentPage });
     const data = response.data.results;
-    console.log(data);
     render(data, renderElement, false, (pagination = true));
   } catch (error) {
     console.log(error);
   }
 };
 
-const observeScrollToEnd = (event, query = '') => {
+const observeScrollToEnd = (instruction, query = '') => {
   const windowHeight = window.innerHeight;
   const documentHeight = document.documentElement.scrollHeight;
   const scrollPosition = window.scrollY;
@@ -44,13 +44,13 @@ const observeScrollToEnd = (event, query = '') => {
   }
 
   if (scrollPosition + windowHeight >= documentHeight) {
-    loadMoreMovies(event, query);
+    loadMoreMovies(instruction, query);
   }
 };
 
-const scrollEvent = (event, query = '') =>
+const scrollEvent = (instruction, query = '') =>
   debounce(() => {
-    observeScrollToEnd(event, query);
+    observeScrollToEnd(instruction, query);
   }, 300);
 
 const observeScrollLibrary = () => {
@@ -84,8 +84,8 @@ const searchInput = document.querySelector('.search__input');
 const searchButton = document.querySelector('.search__icon');
 import { moviesLoading } from './loader';
 
-export const searchListeners = event => {
-  const scrollListener = scrollEvent(event);
+export const searchListeners = instruction => {
+  const scrollListener = scrollEvent(instruction);
   document.addEventListener('scroll', scrollListener);
 
   searchButton.addEventListener('click', async event => {
