@@ -85,8 +85,6 @@ const searchButton = document.querySelector('.search__icon');
 import { moviesLoading } from './loader';
 
 const showSearchResults = async (instruction, querySearch) => {
-  const scrollListener = scrollEvent(instruction);
-  document.addEventListener('scroll', scrollListener);
   if (querySearch) {
     const response = await searchMovies({ query: querySearch });
     if (response) {
@@ -106,6 +104,9 @@ const showSearchResults = async (instruction, querySearch) => {
   }
 };
 export const searchListeners = instruction => {
+  const scrollListener = scrollEvent(instruction);
+  document.addEventListener('scroll', scrollListener);
+
   searchButton.addEventListener('click', async event => {
     event.preventDefault();
     const querySearch = searchInput.value.trim();
