@@ -25,7 +25,7 @@ const fetchTrendingMovies = async page => {
     const response = await api.fetchTrendingMovies(page);
     const data = response.data.results;
     render(data, renderElement, false);
-    searchListeners(fetchTrendingMovies);
+    searchListeners('fetchTrendingMovies');
   } catch (error) {
     console.log(error);
   }

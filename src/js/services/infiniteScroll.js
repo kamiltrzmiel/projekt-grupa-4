@@ -85,8 +85,7 @@ const searchButton = document.querySelector('.search__icon');
 import { moviesLoading } from './loader';
 
 export const searchListeners = instruction => {
-  let instructionName = instruction.name;
-  const scrollListener = scrollEvent(instructionName);
+  const scrollListener = scrollEvent(instruction);
   document.addEventListener('scroll', scrollListener);
 
   searchButton.addEventListener('click', async event => {
@@ -102,8 +101,7 @@ export const searchListeners = instruction => {
       document.addEventListener(
         'scroll',
         debounce(() => {
-          instructionName = 'searchMovies';
-          observeScrollToEnd(instructionName, querySearch);
+          observeScrollToEnd('searchMovies', querySearch);
         }, 300),
       );
     }
@@ -125,8 +123,7 @@ export const searchListeners = instruction => {
         document.addEventListener(
           'scroll',
           debounce(() => {
-            instructionName = 'searchMovies';
-            observeScrollToEnd(instructionName, querySearch);
+            observeScrollToEnd('searchMovies', querySearch);
           }, 300),
         );
       }
