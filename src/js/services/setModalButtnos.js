@@ -14,14 +14,12 @@ const saveMovie = async (data, type) => {
     Notiflix.Notify.warning('Please first login');
   } else {
     const dataToSave = addMovie(data, type);
-    console.log(dataToSave);
     saveMovieToDatabase(dataToSave, user);
     Notiflix.Notify.success(`Movie saved to ${type} successfully!`);
   }
 };
 
 const deleteMovie = async data => {
-  console.log(data);
   const user = await getUser();
   if (!user) {
   } else {
