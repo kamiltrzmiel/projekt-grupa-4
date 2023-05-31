@@ -16,11 +16,10 @@ const loadMoreMovies = async (instruction, query = '') => {
   currentPage++;
   try {
     let response = {};
-    if (event.name === 'fetchTrendingMovies') response = await api.fetchTrendingMovies(currentPage);
-    if (event.name === 'searchMovies')
+    if (instruction.name === 'fetchTrendingMovies')
+      response = await api.fetchTrendingMovies(currentPage);
+    if (instruction.name === 'searchMovies')
       response = await searchMovies({ query: query, page: currentPage });
-    }
-    console.log(response);
     const data = response.data.results;
     render(data, renderElement, false, (pagination = true));
   } catch (error) {
