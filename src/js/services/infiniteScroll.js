@@ -16,9 +16,9 @@ const loadMoreMovies = async (instruction, query = '') => {
   currentPage++;
   try {
     let response = {};
-    if (instruction.name === 'fetchTrendingMovies')
+    if (instruction === 'fetchTrendingMovies')
       response = await api.fetchTrendingMovies(currentPage);
-    if (instruction.name === 'searchMovies')
+    if (instruction === 'searchMovies')
       response = await searchMovies({ query: query, page: currentPage });
     const data = response.data.results;
     render(data, renderElement, false, (pagination = true));
@@ -85,7 +85,8 @@ const searchButton = document.querySelector('.search__icon');
 import { moviesLoading } from './loader';
 
 export const searchListeners = instruction => {
-  const scrollListener = scrollEvent(instruction);
+  let instructionName = instruction.name;
+  const scrollListener = scrollEvent(instructionName);
   document.addEventListener('scroll', scrollListener);
 
   searchButton.addEventListener('click', async event => {
@@ -101,7 +102,8 @@ export const searchListeners = instruction => {
       document.addEventListener(
         'scroll',
         debounce(() => {
-          observeScrollToEnd(searchMovies, querySearch);
+          instructionName = 'searchMovies';
+          observeScrollToEnd(instructionName, querySearch);
         }, 300),
       );
     }
@@ -123,7 +125,8 @@ export const searchListeners = instruction => {
         document.addEventListener(
           'scroll',
           debounce(() => {
-            observeScrollToEnd(searchMovies, querySearch);
+            instructionName = 'searchMovies';
+            observeScrollToEnd(instructionName, querySearch);
           }, 300),
         );
       }
